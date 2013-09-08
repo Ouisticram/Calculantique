@@ -28,7 +28,7 @@ public class FenBaby extends Container {
     private Font police = LoadFonts.create();
 	private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
-	private String chiffre1;							
+	private String chiffre1;
 	private int chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
