@@ -23,7 +23,7 @@ public class FenBaby extends Container {
 	private JTextArea ecran = new JTextArea();				//création du JTextArea (notre écran)
 	private Dimension dim1 = new Dimension(60, 50);			//On déclare la dimension des touches chiffres
 	private Dimension dim2 = new Dimension(60, 41);			//On déclare la dimension des touches d'opérations
-	private Dimension dim3 = new Dimension(240, 41);        //lol
+	private Dimension dim3 = new Dimension(240, 41);
 	//On définit la police d'écriture à utiliser
     private Font police = LoadFonts.create();
 	private Font policeText = new Font("Arial", Font.BOLD, 20);
