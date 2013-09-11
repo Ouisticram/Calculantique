@@ -32,11 +32,11 @@ public class FenBaby extends Container {
 	private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
 	private String chiffre1;
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private Dimension size;
 	
 	//méthode de notre class
@@ -69,6 +69,8 @@ public class FenBaby extends Container {
 	boolean verification (BabyDeci baby){
     	return baby.validBaby();
     }
+	
+	
 	
 	 private void initComposant() throws FontFormatException, IOException{
 		    ecran = new JTextArea("");
@@ -293,15 +295,19 @@ public class FenBaby extends Container {
 		      }
 		      ecran.setText(str);
 		      BabyDeci babylonien = new BabyDeci(str);
-		      int chiffre = babylonien.convBaby();
+		      long chiffre = babylonien.convBaby();
+		      System.out.println(chiffre);
 		      if(!verification(babylonien)){
 			    	chiffreTraduit.setText("Ce n'est pas un nombre babylonien !");
+			    	System.out.println(chiffre);
 			  }
 		      else if( chiffre > 777_600_000){
 		    		chiffreTraduit.setText("Vous avez dépassé la limite des nombres babylonien !");
-              }
+		    		System.out.println("else if"+chiffre);
+		      }
               else{		      
 			      chiffreTraduit.setText(String.valueOf(chiffre));
+			      System.out.println("else"+chiffre);
               }
 		    }
 		  }

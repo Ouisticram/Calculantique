@@ -52,8 +52,8 @@ public class Bibitodeci {
 	}
 
 	//methode de conversion de la base 16 a la base 10
-	static int Conversion16to10(int[] tabi, String bibi){
-		int tmp, nb2;
+	static long Conversion16to10(long[] tabi, String bibi){
+		long tmp, nb2;
 		int taille = bibi.length();						//length, pratique pour connaitre la longueur d'une chaine de caractere
 		tmp = 0;
 		nb2 = 0;
@@ -66,11 +66,12 @@ public class Bibitodeci {
 	}
 	
 	//methode de conversion du bibinaire vers decimal
-	public static int Conversionbibito10 (String bibi){
+	public static long Conversionbibito10 (String bibi){
 		int length = bibi.length();
-		int tabi[] = new int[length];
-		int tabi2[] = new int[length];
-		int l, k, nb2=0;
+		long tabi[] = new long[length];
+		long tabi2[] = new long[length];
+		long nb2 =0;
+		int l, k;
 		if (bibi.charAt(0) == '-')						//si le nombre commence par un -
 		{
 				//On initialise les tableaux a 0	
@@ -251,7 +252,7 @@ public class Bibitodeci {
 		return nb2;				//On retourne notre resultat
 	}
 
-			public static int Main(String bibi) {
+			public static long Main(String bibi) {
 				return Conversionbibito10(bibi);				//On appel notre methode et on renvoie le resultat
 			}
 }

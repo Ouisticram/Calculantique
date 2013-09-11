@@ -30,11 +30,11 @@ public class FenBibi extends Container {
 	private JButton accueil = new JButton("Accueil");
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private String tmp = "";
 	private LecteurTexte lt;
 	private Dimension size;
@@ -212,7 +212,7 @@ public class FenBibi extends Container {
 
 		//méthode qui fait appel à notre class de conversion
 		static class Bitode extends Bibitodeci{
-			static int convert(String bb){
+			static long convert(String bb){
 			return Bibitodeci.Main(bb);
 			}
 		}
