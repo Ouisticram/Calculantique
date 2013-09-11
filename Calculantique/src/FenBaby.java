@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import babylonien.*;
 import fonts.*;
 
@@ -73,10 +74,12 @@ public class FenBaby extends Container {
 	
 	
 	 private void initComposant() throws FontFormatException, IOException{
-		    ecran = new JTextArea("");
+		    ecran = new JTextArea("",1,1);
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
 		    ecran.setFont(police);
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
 		    JPanel calculatrice = new JPanel();
 		    JPanel operateur = new JPanel();      
 		    operateur.setPreferredSize(new Dimension(100, 350));
@@ -102,39 +105,47 @@ public class FenBaby extends Container {
 		        	tab_button[i].setPreferredSize(dim3);
 			        chiffre.add(tab_button[i]);
 					tab_button[i].addActionListener(new EspaceListener());
+					tab_button[i].setFont(policeNb);
 				    break;
 		        case 3 :
 		    	  tab_button[i].addActionListener(new ResteListener());
 		    	  tab_button[i].setEnabled(false);
 		    	  chiffre.add(tab_button[i]);
+		    	  tab_button[i].setFont(policeAct);
 		    	  break;
 		        case 4 :
 		          tab_button[i].addActionListener(new EgalListener());
 		          chiffre.add(tab_button[i]);
+		          tab_button[i].setFont(policeAct);
 		          break;
 		        case 5 :
 		          tab_button[i].setForeground(Color.red);
 		          tab_button[i].addActionListener(new ResetListener());
+		          tab_button[i].setFont(policeNb);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 6 :
 		          tab_button[i].addActionListener(new PlusListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 7 :
 		          tab_button[i].addActionListener(new MoinsListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;	
 		        case 8 :	
 		          tab_button[i].addActionListener(new MultiListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 9 :
 		          tab_button[i].addActionListener(new DivListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        default :
@@ -147,7 +158,9 @@ public class FenBaby extends Container {
 		      }
 		    }
 		    
-		    JScrollPane scrollArea = new JScrollPane(ecran);
+		    JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		    panEcran.setLayout(new BorderLayout());
 		    panEcran.add(scrollArea);    
 		    JLabel egalite = new JLabel(" = ");
@@ -296,18 +309,14 @@ public class FenBaby extends Container {
 		      ecran.setText(str);
 		      BabyDeci babylonien = new BabyDeci(str);
 		      long chiffre = babylonien.convBaby();
-		      System.out.println(chiffre);
 		      if(!verification(babylonien)){
 			    	chiffreTraduit.setText("Ce n'est pas un nombre babylonien !");
-			    	System.out.println(chiffre);
 			  }
 		      else if( chiffre > 777_600_000){
 		    		chiffreTraduit.setText("Vous avez dépassé la limite des nombres babylonien !");
-		    		System.out.println("else if"+chiffre);
 		      }
               else{		      
 			      chiffreTraduit.setText(String.valueOf(chiffre));
-			      System.out.println("else"+chiffre);
               }
 		    }
 		  }

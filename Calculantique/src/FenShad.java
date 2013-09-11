@@ -62,7 +62,9 @@ public class FenShad extends Container {
 		    //On définit la police d'écriture à utiliser
 		    Font police = new Font("Arial", Font.BOLD, 20);
 		    Font policeT = new Font("Arial", Font.BOLD, 12);
-		    ecran = new JTextArea("");
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
+		    ecran = new JTextArea("",1,1);
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
 		    ecran.setFont(police);
@@ -89,35 +91,42 @@ public class FenShad extends Container {
 		        case 4 :
 		    	  tab_button[i].addActionListener(new ResteListener());
 		    	  tab_button[i].setEnabled(false);
+		    	  tab_button[i].setFont(policeAct);
 		    	  chiffre.add(tab_button[i]);
 		    	  break;
 		        case 5 :
 		          tab_button[i].addActionListener(new EgalListener());
+		          tab_button[i].setFont(policeAct);
 		          chiffre.add(tab_button[i]);
 		          break;
 		        case 6 :
 		          tab_button[i].setForeground(Color.red);
 		          tab_button[i].addActionListener(new ResetListener());
+		          tab_button[i].setFont(policeNb);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 7 :
 		          tab_button[i].addActionListener(new PlusListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 8 :
 		          tab_button[i].addActionListener(new MoinsListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;	
 		        case 9 :	
 		          tab_button[i].addActionListener(new MultiListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 10 :
 		          tab_button[i].addActionListener(new DivListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        default :
@@ -136,7 +145,9 @@ public class FenShad extends Container {
 		    lecteur.setPreferredSize(dim3);
 		    lecteur.setEnabled(false);	    
 	        operateur.add(lecteur);
-	        JScrollPane scrollArea = new JScrollPane(ecran);
+	        JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	        panEcran.setLayout(new BorderLayout());
 		    panEcran.add(scrollArea);
 		    JLabel egalite = new JLabel(" = ");

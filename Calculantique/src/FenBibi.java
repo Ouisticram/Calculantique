@@ -61,7 +61,9 @@ public class FenBibi extends Container {
 	 private void initComposant(){
 		    //On définit la police d'écriture à utiliser
 		    Font police = new Font("Arial", Font.BOLD, 20);
-		    ecran = new JTextArea("");
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
+		    ecran = new JTextArea("",1,1);
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
 		    ecran.setFont(police);
@@ -88,35 +90,42 @@ public class FenBibi extends Container {
 		        case 16 :
 		    	  tab_button[i].addActionListener(new ResteListener());
 		    	  tab_button[i].setEnabled(false);
+		    	  tab_button[i].setFont(policeAct);
 		    	  chiffre.add(tab_button[i]);
 		    	  break;
 		        case 17 :
 		          tab_button[i].addActionListener(new EgalListener());
+		          tab_button[i].setFont(policeAct);
 		          chiffre.add(tab_button[i]);
 		          break;
 		        case 18 :
 		          tab_button[i].setForeground(Color.red);
 		          tab_button[i].addActionListener(new ResetListener());
+		          tab_button[i].setFont(policeNb);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 19 :
 		          tab_button[i].addActionListener(new PlusListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 20 :
 		          tab_button[i].addActionListener(new MoinsListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;	
 		        case 21 :	
 		          tab_button[i].addActionListener(new MultiListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 22 :
 		          tab_button[i].addActionListener(new DivListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        default :
@@ -132,9 +141,11 @@ public class FenBibi extends Container {
 		    lecteur = new JButton(new ImageIcon(cl.getResource("play.png")));		    
 		    lecteur.addActionListener(new LectureListener());
 		    lecteur.setPreferredSize(dim3);
-		    lecteur.setEnabled(false);	    
+		    lecteur.setEnabled(false);    
 	        operateur.add(lecteur);
-	        JScrollPane scrollArea = new JScrollPane(ecran);
+	        JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	        panEcran.setLayout(new BorderLayout());
 		    panEcran.add(scrollArea);
 		    JLabel egalite = new JLabel(" = ");
@@ -242,7 +253,6 @@ public class FenBibi extends Container {
 		      }
 		      ecran.setText(str);
 		      tmp = str;
-		      System.out.println(Bitode.convert(str));
 		      chiffreTraduit.setText(String.valueOf(Bitode.convert(str)));
 		    }
 		  }

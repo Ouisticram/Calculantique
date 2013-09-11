@@ -18,8 +18,8 @@ public class FenDeci extends Container {
 	  //Un bouton par élément à afficher
 	  JButton[] tab_button = new JButton[tab_string.length];
 	  private JTextArea ecran = new JTextArea();				//création du JTextArea (notre écran)
-	  private Dimension dim = new Dimension(50, 40);
-	  private Dimension dim2 = new Dimension(50, 31);
+	  private Dimension dim = new Dimension(60, 50);
+	  private Dimension dim2 = new Dimension(60, 41);
 	  private JButton accueil = new JButton("Accueil");
 	  private int chiffre1;
 	  private boolean clicOperateur = false, update = false;
@@ -49,7 +49,9 @@ public class FenDeci extends Container {
 	
 	 private void initComposant(){
 		    //On définit la police d'écriture à utiliser
-		    Font police = new Font("Arial", Font.BOLD, 20);
+		    Font police = new Font("Arial", Font.BOLD, 16);
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
 		    ecran = new JTextArea("");
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
@@ -68,6 +70,7 @@ public class FenDeci extends Container {
 		    	for(int i = 0; i < tab_string.length; i++){
 		    	  tab_button[i] = new JButton(tab_string[i]);
 		    	  tab_button[i].setPreferredSize(dim);
+		    	  tab_button[i].setFont(policeNb);
 		    	  switch(i){
 		    	  	//Pour chaque élément situé à la fin du tableau
 		    		//et qui n'est pas un chiffre
@@ -75,11 +78,13 @@ public class FenDeci extends Container {
 		    	  	case 10 :
 		    	  		tab_button[i].addActionListener(new ResteListener());
 				    	tab_button[i].setEnabled(false);
+				    	tab_button[i].setFont(policeAct);
 				    	chiffre.add(tab_button[i]);
 				    	break;
 		    	  	case 11 :
 		    	  	  tab_button[i].addActionListener(new EgalListener());
 		    	  	  chiffre.add(tab_button[i]);
+		    	  	  tab_button[i].setFont(policeAct);
 		    	  	  break;
 		    	  	case 12 :
 		    	  	  tab_button[i].setForeground(Color.red);
@@ -90,21 +95,25 @@ public class FenDeci extends Container {
 		    	  	  tab_button[i].addActionListener(new PlusListener());
 		    	  	  tab_button[i].setPreferredSize(dim2);
 		    	  	  operateur.add(tab_button[i]);
+		    	  	  tab_button[i].setFont(policeAct);
 		    	  	  break;
 		    	  	case 14 :
 		    	  	  tab_button[i].addActionListener(new MoinsListener());
 		    	  	  tab_button[i].setPreferredSize(dim2);
 		    	  	  operateur.add(tab_button[i]);
+		    	  	  tab_button[i].setFont(policeAct);
 		    	  	  break;
 		    	  	case 15 :
 		    	 	  tab_button[i].addActionListener(new MultiListener());
 		    	 	  tab_button[i].setPreferredSize(dim2);
 		    	 	  operateur.add(tab_button[i]);
+		    	 	  tab_button[i].setFont(policeAct);
 		    	 	  break;
 		    	  	case 16 :
 		    	  	  tab_button[i].addActionListener(new DivListener());
 		    	  	  tab_button[i].setPreferredSize(dim2);
 		    	  	  operateur.add(tab_button[i]);
+		    	  	  tab_button[i].setFont(policeAct);
 		    	  	  break;
 		    	  	default :
 		    		  //Par défaut, ce sont les premiers éléments du tableau
@@ -115,7 +124,9 @@ public class FenDeci extends Container {
 		    	  }
 		    }
 		    
-	        JScrollPane scrollArea = new JScrollPane(ecran);
+	        JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	        panEcran.setLayout(new BorderLayout());
 		    panEcran.add(scrollArea);
 		    accueil.addActionListener(new PageAccueil());

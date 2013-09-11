@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -56,9 +57,11 @@ public class FenJapo extends Container{
 	}
   
   	private void initComposant(){
-	    ecran = new JTextArea("");
+	    ecran = new JTextArea("",1,1);
 	    ecran.setRows(3);
 	    ecran.setEditable(false);
+	    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+	    Font policeAct = new Font("Arial", Font.PLAIN, 18);
 	    JPanel calculatrice = new JPanel();
 	    JPanel operateur = new JPanel();      
 	    operateur.setPreferredSize(new Dimension(100, 350));
@@ -82,35 +85,42 @@ public class FenJapo extends Container{
 	        case 14 :
 	    	  tab_button[i].addActionListener(new ResteListener());
 	    	  tab_button[i].setEnabled(false);
+	    	  tab_button[i].setFont(policeAct);
 	    	  chiffre.add(tab_button[i]);
 	    	  break;
 	        case 15 :
 	          tab_button[i].addActionListener(new EgalListener());
+	          tab_button[i].setFont(policeAct);
 	          chiffre.add(tab_button[i]);
 	          break;
 	        case 16 :
 	          tab_button[i].setForeground(Color.red);
 	          tab_button[i].addActionListener(new ResetListener());
+	          tab_button[i].setFont(policeNb);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 17 :
 	          tab_button[i].addActionListener(new PlusListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 18 :
 	          tab_button[i].addActionListener(new MoinsListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;	
 	        case 19 :	
 	          tab_button[i].addActionListener(new MultiListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 20 :
 	          tab_button[i].addActionListener(new DivListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        default :
@@ -122,7 +132,9 @@ public class FenJapo extends Container{
 	      }
 	    }
 	    
-	    JScrollPane scrollArea = new JScrollPane(ecran);
+	    JScrollPane scrollArea = new JScrollPane(ecran,
+                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    panEcran.setLayout(new BorderLayout());
 	    panEcran.add(scrollArea);
 	    JLabel egalite = new JLabel(" = ");
