@@ -8,7 +8,7 @@ public class Egyptodeci {
 	private int nbIndex;
 	private int nbTetard;
 	private int nbDieu;
-	private int[] tab;
+	private long[] tab;
 	private String Nombre;
 	static int nbgroupe=1;
 	
@@ -21,7 +21,7 @@ public class Egyptodeci {
 		this.nbIndex = 0;
 		this.nbTetard = 0;
 		this.nbDieu = 0;
-		this.tab = new int[0];
+		this.tab = new long[0];
 	}
 	
 	public int getGroup (){
@@ -37,7 +37,7 @@ public class Egyptodeci {
 	}
 	
 	public void setTab(int taille) {
-		this.tab= new int[taille];
+		this.tab= new long[taille];
 	}
 	
 	//Vérifie si le nombre est valide
@@ -122,11 +122,11 @@ public class Egyptodeci {
 		}
 	}
 	
-	public int convertion(){
+	public long convertion(){
 		this.setTab(this.nbgroupe); // on créer un tableau de la taille du nombre de groupe 
 		this.initTab(); // et on initialise ce tableau
 		int i=this.tab.length-1,j=0; // on initialise i a la taille du tableau pour compléter le tableau dans le sens ou insère la valeur des nombres
-		int somme=0;
+		long somme=0;
 		String signe;
 
 		while ( i >= 0 && j < this.Nombre.length()) // tant qu'on ne dépasse pas le tableau et la taille du mot on fait

@@ -26,11 +26,11 @@ public class FenGrec extends Container{
 	private JButton accueil = new JButton("Accueil");
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private Dimension size;
 	
 	//méthode de notre class
@@ -308,14 +308,14 @@ public class FenGrec extends Container{
 
 	//méthode qui fait appel à notre class de conversion
 	static class Detogr extends DecimalToGrec{
-		static String convert(int chiffre){
+		static String convert(long chiffre){
 			return DecimalToGrec.main(chiffre);
 		}
 	}
 
 	//méthode qui fait appel à notre class de conversion
 	static class Grtode extends GrecToDecimal{
-		static int convert(String gr){
+		static long convert(String gr){
 			return GrecToDecimal.main(gr);
 		}
 	}
@@ -345,7 +345,7 @@ public class FenGrec extends Container{
 	          
 	      }
 	      ecran.setText(str);
-	      int chiffre = Grtode.convert(str);
+	      long chiffre = Grtode.convert(str);
 	      if(!verificationGrec(str)){
 	    	  chiffreTraduit.setText("Ce n'est pas un nombre grec !");
 	      }

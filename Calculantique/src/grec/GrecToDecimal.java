@@ -5,7 +5,7 @@ public class GrecToDecimal
 {
 	
 	// equivalents char - int
-	static int grecdeci(char nb)
+	static long grecdeci(char nb)
 	{ int rendu = 0;
 		if(nb == '\u03B1') {rendu = 1;}
 		else if (nb == '\u03B2') {rendu = 2;}
@@ -38,9 +38,9 @@ public class GrecToDecimal
 	}
 	
 	// conversion char - int :
-	static int conversion(String nb)
+	static long conversion(String nb)
 	{
-		int retour = 0;
+		long retour = 0;
 		int nbchiffre = nb.length();
 		for (int i = 0; i<nbchiffre;i++)
 		{
@@ -149,9 +149,9 @@ public class GrecToDecimal
 		return verif;
 	}
 
-	public static int main(String nb)
+	public static long main(String nb)
 	{
-		int deci = conversion(nb);
+		long deci = conversion(nb);
 		return deci;
 	}
 

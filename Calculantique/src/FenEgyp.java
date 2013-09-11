@@ -30,12 +30,12 @@ public class FenEgyp extends Container {
     private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private Decitoegypt egyptien = new Decitoegypt();
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private Dimension size;
 		
 	//méthode de notre class
@@ -268,7 +268,7 @@ public class FenEgyp extends Container {
 		      }
 		      ecran.setText(str);
 		      Egyptodeci egyptien = new Egyptodeci(str);
-		      int chiffre = egyptien.convertion();
+		      long chiffre = egyptien.convertion();
 		      if(!verification(egyptien)){
 		    	  chiffreTraduit.setText("Ce n'est pas un nombre egyptien !");
 			  }

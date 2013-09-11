@@ -31,12 +31,12 @@ public class FenMaya extends Container {
     private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	Maya maya = new Maya();
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private Dimension size;
 		
 	//méthode de notre class
@@ -289,7 +289,7 @@ public class FenMaya extends Container {
 		      }
 		      ecran.setText(str);
 		      MayaDeci maya = new MayaDeci(str);
-		      int chiffre = maya.convertDeci();
+		      long chiffre = maya.convertDeci();
 		      if(!verification(maya)){
 		    	  chiffreTraduit.setText("Ce n'est pas un nombre maya !");
 		      }

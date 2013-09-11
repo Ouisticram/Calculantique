@@ -9,7 +9,7 @@ public class RomainDeci {
 	static int cptX;
 	static int cptV;
 	static int cptI;
-	public int[] tab;
+	public long[] tab;
 	
 
 	public RomainDeci(String saValeur){
@@ -274,7 +274,7 @@ public class RomainDeci {
 
 
 	public void setTab() { // initialisation d'un tableau qui a pour longueur la taille du mot
-		this.tab = new int [this.valeur.length()];
+		this.tab = new long [this.valeur.length()];
 	}
 
 	public void initTab() { // on initialise le tableau a 0
@@ -284,10 +284,10 @@ public class RomainDeci {
 		}
 	}
 
-	public int convertRomain () {
+	public long convertRomain () {
 		this.setTab();
 		this.initTab();
-		int somme=0; //variable qui va retourner le resultat
+		long somme=0; //variable qui va retourner le resultat
 		char lettre1; // on récupere la lettre
 		
 		// première boucle qui attribut dans le tableau la valeur de chaque lettre

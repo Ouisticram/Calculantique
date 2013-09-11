@@ -5,7 +5,7 @@ public class DecimalToGrec {
 	
 
 // donne le nombre de chiffre d'un nombre donne.
-static int nbchiffre(int nb)
+static int nbchiffre(long nb)
 {
 	int retour = String.valueOf(nb).length();
 	return retour;
@@ -13,7 +13,7 @@ static int nbchiffre(int nb)
 
 
 // equivalents int - string
-static String decigrec(int nb)
+static String decigrec(long nb)
 { String rendu = "";
 	if(nb == 1) {rendu = "\u03B1";}
 	else if (nb == 2) {rendu = "\u03B2";}
@@ -47,7 +47,7 @@ static String decigrec(int nb)
 
 
 // convertit nb en son equivalent grec.
-static String conversion(int nb)
+static String conversion(long nb)
 {
 	int nbchiffre, diviseur, i;
 	String retour = "";
@@ -72,7 +72,7 @@ static String conversion(int nb)
 
 
 // verification le chiffre est compris entre 1 et 9999:
-static boolean verification(int nb)
+static boolean verification(long nb)
 {
 	boolean verif = true;
 	if (nb > 9999) {verif = false;}
@@ -81,7 +81,7 @@ static boolean verification(int nb)
 }
 
 // programme principal
-public static String main(int nb)
+public static String main(long nb)
 	{
 		return conversion(nb);
 	}

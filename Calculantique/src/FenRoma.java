@@ -25,11 +25,11 @@ public class FenRoma extends Container {
 	private JButton accueil = new JButton("Accueil");
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
 	private Dimension size;
 		
 	//méthode de notre class
@@ -262,7 +262,7 @@ public class FenRoma extends Container {
 		      }
 		      ecran.setText(str);
 		      RomainDeci nombreR =  new RomainDeci(str);
-		      int chiffre = nombreR.convertRomain();
+		      long chiffre = nombreR.convertRomain();
 		      if(!Verifromain(nombreR)){
 		    	  chiffreTraduit.setText("Ce n'est pas un nombre romain !");
 		      }
