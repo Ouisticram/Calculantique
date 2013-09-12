@@ -19,96 +19,92 @@ public class RomainDeci {
 	public boolean validCompteur(char lettre){
 		boolean valide=true;
 
-		//if (lettre=='M')
-		if (lettre=='\u216F')
+		if (lettre=='M')
 					{		
 					this.cptM++;	
 					if (this.cptM > 10) { valide=false;} // on "dit" qu'on ne peux pas avoir plus de 10 M
 					}
-		//else if (lettre=='D')
-		else if (lettre=='\u216E')
+		else if (lettre=='D')
 					{		
 					this.cptD++;	
 					if (this.cptD > 1) { valide=false;} // on peut avoir au maximum un D
 					}	
 	
-		else if (lettre=='\u216D')
+		else if (lettre=='C')
 					{		
 					this.cptC++;	
 					if (this.cptC > 4) { valide=false;} // on ne peux avoir plus de quatre C
 					}	
-		else if (lettre=='\u216C')
+		else if (lettre=='L')
 					{		
 					this.cptL++;	
 					if (this.cptL > 1) { valide=false;}// on ne peux avoir plus de un L
 					}	
-		else if (lettre=='\u2169')
+		else if (lettre=='X')
 					{		
 					this.cptX++;	
 					if (this.cptX > 4) { valide=false;}// on ne peux avoir plus de quatre X
 					}	
-		else if (lettre=='\u2164')
+		else if (lettre=='V')
 					{		
 					this.cptV++;	
 					if (this.cptV > 1) { valide=false;}// on ne peux avoir plus de un V
 					}
-		else if (lettre=='\u2160')
+		else if (lettre=='I')
 					{		
 					this.cptI++;	
 					if (this.cptI > 4) { valide=false;} // on ne peux avoir plus de quatre I
-					}		
-		cptM = 0; cptD = 0; cptC = 0; cptL = 0; cptX = 0; cptV = 0; cptI = 0;
+					}			
 		return valide;
 	}
 
 	public boolean validLettre(char lettre1) { //Permet de controler une lettre
 		boolean valide=true;
-		// '\u2160'='I', '\u2164'='V', '\u2169'='X', '\u216C'='L', '\u216D'='C', '\u216E'='D, '\u216F'='M'
-		if (lettre1!='\u216F' && lettre1 !='\u216E' && lettre1!='\u216D' && lettre1!='\u216C' && lettre1!='\u2169' && lettre1!='\u2164' && lettre1!='\u2160' && lettre1!=' ')
+		if (lettre1!='M' && lettre1 !='D' && lettre1!='C' && lettre1!='L' && lettre1!='X' && lettre1!='V' && lettre1!='I' && lettre1!=' ')
 		{valide=false;}
 		return valide;
 	}
 
 	public boolean validOrdre(char lettre1, char lettre2){ //Permet de controler deux lettres
 		boolean valide=true;
-		if (lettre1=='\u216E')
+		if (lettre1=='D')
 		{
-			if (lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160')
+			if (lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I')
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u216D')
+		else if (lettre1=='C')
 		{
-			if (lettre2!='\u216E' && lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160')
+			if (lettre2!='D' && lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I')
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u216C')
+		else if (lettre1=='L')
 		{
-			if (lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160')
+			if (lettre2!='X' && lettre2!='V' && lettre2!='I')
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2169')
+		else if (lettre1=='X')
 		{
-			if (lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160')
+			if (lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I')
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2164')
+		else if (lettre1=='V')
 		{
-			if (lettre2!='\u2160')
+			if (lettre2!='I')
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2160')
+		else if (lettre1=='I')
 		{
-			if (lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160')
+			if (lettre2!='X' && lettre2!='V' && lettre2!='I')
 			{
 				valide=false;
 			}
@@ -119,70 +115,70 @@ public class RomainDeci {
 	public boolean validOrdre3lettre (char lettre1,char lettre2,char lettre3) { // Permet de controler 3 lettres en même temps
 	boolean valide=true;
 
-		if(lettre1=='\u216F') // si on a un M
+		if(lettre1=='M') // si on a un M
 		{
-			if(lettre2!='\u216D' && lettre2!='\u216F' && lettre3=='\u216F') // on ne peut avoir que MCM ou MMM
+			if(lettre2!='C' && lettre2!='M' && lettre3=='M') // on ne peut avoir que MCM ou MMM
 			{
 				valide=false;
 			}
 
 		}
-		else if (lettre1=='\u216E') // si on a un D
+		else if (lettre1=='D') // si on a un D
 		{
-			if (lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160') // on peut tout avoir en 2ème lettre
+			if (lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I') // on peut tout avoir en 2ème lettre
 			{
 				valide=false;
 			}
 		}
 		
-		else if (lettre1=='\u216D') // si on a un C
+		else if (lettre1=='C') // si on a un C
 		{
-			if (lettre2!='\u216E' && lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160') //controle des lettres
+			if (lettre2!='D' && lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I') //controle des lettres
 			{
 				valide=false;
 			}
 			
-			if(lettre2!='\u2169' && lettre2!='\u216D' && lettre3=='\u216D') // on ne peut avoir CLC,CIC,CVC,CMC,CDC
+			if(lettre2!='X' && lettre2!='C' && lettre3=='C') // on ne peut avoir CLC,CIC,CVC,CMC,CDC
 			{
 				valide = false;
 			}
 		}
-		else if (lettre1=='\u216C') // si on a un L
+		else if (lettre1=='L') // si on a un L
 		{
-			if (lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160') // derrière un L on en peut avoir que des X,V,ou I
+			if (lettre2!='X' && lettre2!='V' && lettre2!='I') // derrière un L on en peut avoir que des X,V,ou I
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2169') // si on a un X
+		else if (lettre1=='X') // si on a un X
 		{
-			if (lettre2!='\u216D' && lettre2!='\u216C' && lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160') // controle des lettres
+			if (lettre2!='C' && lettre2!='L' && lettre2!='X' && lettre2!='V' && lettre2!='I') // controle des lettres
 			{
 				valide=false;
 			}
-			if (lettre2=='\u216D' || lettre2=='\u216F' || lettre2=='\u216C' && lettre3=='\u2169') // on ne peux pas avoir XMX,XLX,XCX
+			if (lettre2=='C' || lettre2=='M' || lettre2=='L' && lettre3=='X') // on ne peux pas avoir XMX,XLX,XCX
 			{
 				valide=false;
 			}
-			if(lettre2=='\u216D' && lettre3=='\u2164' || lettre3=='\u2160') // on peut avoir que XCI ou XCV
+			if(lettre2=='C' && lettre3=='V'|| lettre3=='I') // on peut avoir que XCI ou XCV
 			{
 				valide=true;
 			}
-			if (lettre2=='\u2169' && lettre3!='\u2169' && lettre3!='\u2160' && lettre3!='\u2164')//si on a deux X on peut avoir que des X, un V ou des I
+			if (lettre2=='X' && lettre3!='X' && lettre3!='I' && lettre3!='V')//si on a deux X on peut avoir que des X, un V ou des I
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2164') // si on a un V
+		else if (lettre1=='V') // si on a un V
 		{
-			if (lettre2!='\u2160') // derriere un V on ne peut avoir que un I
+			if (lettre2!='I') // derriere un V on ne peut avoir que un I
 			{
 				valide=false;
 			}
 		}
-		else if (lettre1=='\u2160') // si on a un I
+		else if (lettre1=='I') // si on a un I
 		{
-			if (lettre2!='\u2169' && lettre2!='\u2164' && lettre2!='\u2160') // derriere un I on ne peut avoir que des X,V,I
+			if (lettre2!='X'&& lettre2!='V' && lettre2!='I') // derriere un I on ne peut avoir que des X,V,I
 			{
 				valide=false;
 			}
@@ -204,19 +200,19 @@ public class RomainDeci {
 		for (int i=0; i < this.valeur.length();i++) // on boucle sur tout le mot
 		{
 			lettre1 = this.valeur.charAt(i); // on recupère la 1ère lettre
-			if (this.validCompteur(lettre1)==false) { return false;}//si cette lettre est fausse on sort & renvoie faux
+			if (this.validCompteur(lettre1)==false) {System.out.println("J'ai l'impression que la lettre est fausse"); valide = false; break;}//si cette lettre est fausse on sort & renvoie faux
 			if (this.valeur.length() == 1 ) // sinon si la taille du mot est de 1
 			{
 				if(this.validLettre(this.valeur.charAt(0))==false) // on re-test la validité de la premiere lettre
 				{
-					return false; // si elle est fausse on sort et renvoie faux
+					valide=false;break; // si elle est fausse on sort et renvoie faux
 				}
 			}
 			else if (this.valeur.length()==2) // si elle est de 2
 			{
 				if (this.validLettre(lettre1)==false) // on test la validité de la 1 ere lettre
 				{
-					return false;// si elle est fausse on sort, et on renvoie faux
+					valide=false; break;// si elle est fausse on sort, et on renvoie faux
 				}
 				else // si la première est valide
 				{
@@ -231,7 +227,7 @@ public class RomainDeci {
 							
 							if (this.validOrdre(lettre1,lettre2)==false) // on regarde la validité de l'ordre 
 							{
-								return false; // si faux on sort et renvoie faux
+								valide=false;break; // si faux on sort et renvoie faux
 							}
 						x++; // on incrémente x pour sortir de la boucle
 						}
@@ -268,6 +264,7 @@ public class RomainDeci {
 				}
 			}
 		}
+	this.cptM=0;this.cptD=0;this.cptC=0;this.cptL=0;this.cptX=0;this.cptV=0;this.cptI=0; // on remet le scompteur a zéro 
 	return valide; // on retourne valide 
 	}
 
@@ -295,37 +292,37 @@ public class RomainDeci {
 		{
 			lettre1 = this.valeur.charAt(i);
 		
-			if (lettre1=='\u216F')
+			if (lettre1=='M')
 			{
 				tab[i] =1000;
 			}
 		
-			if (lettre1=='\u216E')
+			if (lettre1=='D')
 			{
 				tab[i] =500;
 			}
 		
-			if (lettre1=='\u216D')
+			if (lettre1=='C')
 			{
 				tab[i] =100;
 			}
 		
-			if (lettre1=='\u216C')
+			if (lettre1=='L')
 			{
 				tab[i] =50;
 			}
 		
-			if (lettre1=='\u2169')
+			if (lettre1=='X')
 			{
 				tab[i] =10;
 			}
 		
-			if (lettre1=='\u2164')
+			if (lettre1=='V')
 			{
 				tab[i] = 5;
 			}
 		
-			if (lettre1=='\u2160')
+			if (lettre1=='I')
 			{
 				tab[i] =1;
 			}

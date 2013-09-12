@@ -12,7 +12,7 @@ static int nbchiffre(long nb)
 }
 
 
-// equivalents int - string
+// equivalents long - string
 static String decigrec(long nb)
 { String rendu = "";
 	if(nb == 1) {rendu = "\u03B1";}

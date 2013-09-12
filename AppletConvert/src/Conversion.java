@@ -272,8 +272,7 @@ public class Conversion extends JApplet
 				choix = (String)combo.getSelectedItem();
 				if ((String)combo.getSelectedItem() == "Babylonien") {
 					clavier.setVisible(false);
-					clavier.removeAll();	 
-					//clavier.setPreferredSize(new Dimension(50, 350));
+					clavier.removeAll();
 					changePoliceBa1();
 					for(int i = 0; i < tab_string_Ba.length; i++){
 						tab_button_Ba[i] = new JButton(tab_string_Ba[i]);
@@ -286,8 +285,6 @@ public class Conversion extends JApplet
 							  tab_button_Ba[i].addActionListener(new EspaceListener());
 						      break;
 						default :
-							//Par defaut, ce sont les premiers elements du tableau
-							//donc des chiffres, on affecte alors le bon listener
 							tab_button_Ba[i].setFont(policeBa);
 							clavier.add(tab_button_Ba[i]);
 							tab_button_Ba[i].addActionListener(new ChiffreListener());
@@ -300,15 +297,12 @@ public class Conversion extends JApplet
 				else if ((String)combo.getSelectedItem() == "Egyptien") {
 					clavier.setVisible(false);
 					clavier.removeAll();
-					//clavier.setPreferredSize(new Dimension(260, 350));
 					changePoliceEg1();
 					for(int i = 0; i < tab_string_Eg.length; i++){
 						tab_button_Eg[i] = new JButton(tab_string_Eg[i]);
 						tab_button_Eg[i].setPreferredSize(dim4);
 						switch(i){
 						default :
-							//Par defaut, ce sont les premiers elements du tableau
-							//donc des chiffres, on affecte alors le bon listener
 							tab_button_Eg[i].setFont(policeEg);
 							clavier.add(tab_button_Eg[i]);
 							tab_button_Eg[i].addActionListener(new ChiffreListener());
@@ -321,15 +315,12 @@ public class Conversion extends JApplet
 				else if ((String)combo.getSelectedItem() == "Grec") {
 					clavier.setVisible(false);
 					clavier.removeAll();
-					//clavier.setPreferredSize(new Dimension(400, 350));
 					changePolice1();
 					for(int i = 0; i < tab_string_Gr.length; i++){
 						tab_button_Gr[i] = new JButton(tab_string_Gr[i]);
 						tab_button_Gr[i].setPreferredSize(dimG);
 						switch(i){
 						default :
-							//Par defaut, ce sont les premiers elements du tableau
-							//donc des chiffres, on affecte alors le bon listener
 							clavier.add(tab_button_Gr[i]);
 							tab_button_Gr[i].addActionListener(new ChiffreListener());
 							break;
@@ -340,16 +331,13 @@ public class Conversion extends JApplet
 				}
 				else if ((String)combo.getSelectedItem() == "Japonais") {
 					clavier.setVisible(false);
-					clavier.removeAll();	
-					//clavier.setPreferredSize(new Dimension(300, 350));
+					clavier.removeAll();
 					changePoliceJa1();
 					for(int i = 0; i < tab_string_Ja.length; i++){
 						tab_button_Ja[i] = new JButton(tab_string_Ja[i]);
 						tab_button_Ja[i].setPreferredSize(dim3);
 						switch(i){
 						default :
-							//Par defaut, ce sont les premiers elements du tableau
-							//donc des chiffres, on affecte alors le bon listener
 							clavier.add(tab_button_Ja[i]);
 							tab_button_Ja[i].addActionListener(new ChiffreListener());
 							break;
@@ -360,8 +348,7 @@ public class Conversion extends JApplet
 				}
 				else if ((String)combo.getSelectedItem() == "Maya") {
 					clavier.setVisible(false);
-					clavier.removeAll();    
-					//clavier.setPreferredSize(new Dimension(260, 350));
+					clavier.removeAll();
 					changePoliceMa1();
 					for(int i = 0; i < tab_string_Ma.length; i++){
 						tab_button_Ma[i] = new JButton(tab_string_Ma[i]);
@@ -375,8 +362,6 @@ public class Conversion extends JApplet
 					        tab_button_Ma[i].addActionListener(new RetourLigneListener());
 						    break;
 						default :
-							//Par defaut, ce sont les premiers elements du tableau
-							//donc des chiffres, on affecte alors le bon listener
 							tab_button_Ma[i].setFont(policeMa);
 							clavier.add(tab_button_Ma[i]);
 							tab_button_Ma[i].addActionListener(new ChiffreListener());
@@ -389,7 +374,6 @@ public class Conversion extends JApplet
 				else{
 					clavier.setVisible(false);
 					clavier.removeAll();
-					//clavier.setPreferredSize(new Dimension(260, 350));
 					changePolice1();
 					revalidate();
 					clavier.setVisible(true);
@@ -426,11 +410,11 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{				
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){							
-							input2.setText(input1.getText());
+							input2.setText(input1.getText().trim());
 							}
 							else{
 								changePolice2();
@@ -444,9 +428,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{						
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if (tmp.validBaby()) {						
 							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(Decitobibi(Long.valueOf(tmp1))); // on convertit le decimal en bibinaire
@@ -458,9 +442,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText());
+						BabyDeci tmp = new BabyDeci (input1.getText().trim());
 							if (tmp.validBaby()) {
 							input2.setText(String.valueOf(tmp.convBaby()));
 							}
@@ -471,9 +455,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){							
 							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							Decitoegypt egypt = new Decitoegypt(); // nouvelle variable de type decitoegypt
@@ -491,9 +475,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){							
 							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(DecimalToGrec.main(tmp1)); // on convertit le decimal en grec
@@ -505,9 +489,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ //Ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){						
 							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(Decitojapo(Long.valueOf(tmp1))); // on convertit le decimal en japonnais
@@ -519,9 +503,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ //Ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){
 							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							Maya maya = new Maya(); // nouvelle variable de type Maya
@@ -539,9 +523,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()) {
 							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							DeciRomain maya = new DeciRomain(tmp1); // nouvelle variable de type DeciRomain
@@ -554,9 +538,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
+						BabyDeci tmp = new BabyDeci (input1.getText().trim()); // on convertit d'abord en decimal
 							if(tmp.validBaby()) {
 							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							Decimal shadok = new Decimal(0); // nouvelle variable de type Decimal(shadok)
@@ -569,13 +553,13 @@ public class Conversion extends JApplet
 					}	
 				}
 				else if (choix == "Bibinaire"){ //ok
-					input1.setText(input1.getText().toUpperCase());
+					input1.setText(input1.getText().toUpperCase().trim());
 					if (choix2 == "Babylonien"){
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
+						if(Verifchaine(input1.getText().trim())){
 						long tmp = Bibitodeci(input1.getText());
-							if (Bibitodeci.VerifBibi(input1.getText()))
+							if (Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							DeciBaby baby = new DeciBaby((int) tmp);
 							input2.setText(baby.convDeciBaby());
@@ -592,9 +576,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ //Ok
 						changePolice2();
 						revalidate();
-							if (Bibitodeci.VerifBibi(input1.getText()))
+							if (Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
-							tmp = input1.getText();
+							tmp = input1.getText().trim();
 							input2.setText(tmp);
 							}
 							else input2.setText("mauvaise saisie");
@@ -602,11 +586,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText()))
+						if(Verifchaine(input1.getText().trim()))
 						{
-							if(Bibitodeci.VerifBibi(input1.getText()))
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
-							long tmp1 = Bibitodeci(input1.getText());
+							long tmp1 = Bibitodeci(input1.getText().trim());
 							input2.setText(String.valueOf(tmp1));
 							}
 							else input2.setText("mauvaise saisie");
@@ -616,10 +600,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						int tmp1 = (int) Bibitodeci(input1.getText());
-							if (Bibitodeci.VerifBibi(input1.getText()))
+						int tmp1 = (int) Bibitodeci(input1.getText().trim());
+							if (Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							Decitoegypt egypt = new Decitoegypt(); 
 							input2.setText(egypt.convertionNombre(tmp1));
@@ -636,9 +620,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						int tmp1 =(int) Bibitodeci(input1.getText()); 
-							if(Bibitodeci.VerifBibi(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						int tmp1 =(int) Bibitodeci(input1.getText().trim()); 
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							input2.setText(DecimalToGrec.main(tmp1)); // on renvoie la valeur en grec
 							}
@@ -649,9 +633,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ //OK
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						long tmp1 = Bibitodeci(input1.getText());
-							if(Bibitodeci.VerifBibi(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						long tmp1 = Bibitodeci(input1.getText().trim());
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							tmp = Decitojapo(tmp1); // on stock la conversion en japonnais dans tmp
 							input2.setText(String.valueOf(tmp)); // on renvoie la valeur
@@ -663,9 +647,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // Ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						int tmp = (int) Bibitodeci(input1.getText()); // on convertit de bibinaire a decimal
-							if(Bibitodeci.VerifBibi(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						int tmp = (int) Bibitodeci(input1.getText().trim()); // on convertit de bibinaire a decimal
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							Maya maya = new Maya(); // nouvelle variable de type maya
 							input2.setText(maya.convertNombre(tmp)); //renvoie la conversion du nombre
@@ -682,9 +666,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						int tmp = (int) Bibitodeci(input1.getText()); // on convertit de bibinaire a decimal
-							if(Bibitodeci.VerifBibi(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						int tmp = (int) Bibitodeci(input1.getText().trim()); // on convertit de bibinaire a decimal
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{							
 							DeciRomain romain = new DeciRomain(tmp); //variable de type deciRomain
 							input2.setText(romain.convertDeci()); // on renvoie la conversion du nombre
@@ -696,10 +680,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						long tmp1 = Bibitodeci(input1.getText()); // on convertit de bibinaire a decimal
-							if(Bibitodeci.VerifBibi(input1.getText()))
+						long tmp1 = Bibitodeci(input1.getText().trim()); // on convertit de bibinaire a decimal
+							if(Bibitodeci.VerifBibi(input1.getText().trim()))
 							{
 							Decimal shadok = new Decimal(0); // nouvelle variable de type Decimal(shadok)
 							shadok.setVal(tmp1);
@@ -714,8 +698,8 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){
 						changePoliceBa2();
 						revalidate();
-						if(Verifentier(input1.getText())){ // Ok
-							DeciBaby tmp = new DeciBaby(Integer.valueOf(input1.getText()));
+						if(Verifentier(input1.getText().trim())){ // Ok
+							DeciBaby tmp = new DeciBaby(Integer.valueOf(input1.getText().trim()));
 							input2.setText(tmp.convDeciBaby());
 						}
 						else{
@@ -726,7 +710,7 @@ public class Conversion extends JApplet
 						changePolice2();
 						revalidate();
 						if(Verifentier(input1.getText())){ //Ok
-							tmp = Decitobibi(Long.valueOf(input1.getText()));
+							tmp = Decitobibi(Long.valueOf(input1.getText().trim()));
 							input2.setText(tmp);
 						}
 						else{input2.setText("Caractere(s) non valide");}
@@ -734,17 +718,17 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifentier(input1.getText())){
-						tmp = input1.getText();
+						if(Verifentier(input1.getText().trim())){
+						tmp = input1.getText().trim();
 						input2.setText(tmp);}
 						else{input2.setText("Caractere(s) non valide");}
 					}
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifentier(input1.getText())){ 
+						if(Verifentier(input1.getText().trim())){ 
 							Decitoegypt egypt = new Decitoegypt();
-							input2.setText(egypt.convertionNombre(Integer.valueOf(input1.getText())));
+							input2.setText(egypt.convertionNombre(Long.valueOf(input1.getText().trim())));
 						}
 						else{
 							changePolice2();
@@ -753,8 +737,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifentier(input1.getText())){
-							tmp = DecimalToGrec.main(Integer.valueOf(input1.getText()));
+						if(Verifentier(input1.getText().trim())){
+							tmp = DecimalToGrec.main(Long.valueOf(input1.getText().trim()));
 							input2.setText(tmp);
 						}
 						else{input2.setText("Caractere(s) non valide");}
@@ -762,8 +746,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // Ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifentier(input1.getText())){
-						tmp = Decitojapo(Long.valueOf(input1.getText()));
+						if(Verifentier(input1.getText().trim())){
+						tmp = Decitojapo(Long.valueOf(input1.getText().trim()));
 						input2.setText(tmp);
 						}
 						else{input2.setText("Caractere(s) non valide");}
@@ -771,9 +755,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // Ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifentier(input1.getText())){
+						if(Verifentier(input1.getText().trim())){
 						Maya tmp = new Maya();
-						input2.setText(tmp.convertNombre(Integer.valueOf(input1.getText())));
+						input2.setText(tmp.convertNombre(Long.valueOf(input1.getText().trim())));
 						}
 						else{
 							changePolice2();
@@ -782,8 +766,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifentier(input1.getText())){
-						DeciRomain tmp = new DeciRomain(Integer.valueOf(input1.getText()));
+						if(Verifentier(input1.getText().trim())){
+						DeciRomain tmp = new DeciRomain(Long.valueOf(input1.getText().trim()));
 						input2.setText(tmp.convertDeci());
 						}
 						else{input2.setText("Caractere(s) non valide");}
@@ -791,9 +775,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){//en cours
 						changePolice2();
 						revalidate();
-						if(Verifentier(input1.getText())){
+						if(Verifentier(input1.getText().trim())){
 						Decimal tmp = new Decimal(0);
-						input2.setText(tmp.ConvSha(Long.valueOf(input1.getText())));
+						input2.setText(tmp.ConvSha(Long.valueOf(input1.getText().trim())));
 						}
 						else{input2.setText("Caractere(s) non valide");}
 					}
@@ -802,8 +786,8 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){ // Ok 
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							DeciBaby baby = new DeciBaby(tmp);
@@ -821,9 +805,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							input2.setText(Decitobibi(Long.valueOf(tmp))); // on convertit le decimal en bibinaire
@@ -835,9 +819,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							input2.setText(String.valueOf(tmp));
@@ -849,11 +833,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
-							input2.setText(input1.getText());
+							input2.setText(input1.getText().trim());
 							}
 							else{
 								changePolice2();
@@ -867,9 +851,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							input2.setText(DecimalToGrec.main(tmp));
@@ -881,9 +865,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) // verifie
+						if(Verifchaine(input1.getText().trim())) // verifie
 						{
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							input2.setText(Decitojapo(tmp));
@@ -895,8 +879,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ //ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							Maya maya = new Maya ();
@@ -914,8 +898,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ //ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							DeciRomain romain = new DeciRomain(tmp);
@@ -928,8 +912,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ //ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						Egyptodeci egypt = new Egyptodeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+						Egyptodeci egypt = new Egyptodeci(input1.getText().trim());
 							if(egypt.validationEgypt()){
 							long tmp = egypt.convertion();
 							Decimal shadok = new Decimal(tmp);
@@ -944,9 +928,9 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){ //Ok
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							DeciBaby baby = new DeciBaby(tmp);
 							input2.setText(baby.convDeciBaby());
 							}
@@ -962,9 +946,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ //ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							input2.setText(Decitobibi(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -974,9 +958,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							input2.setText(String.valueOf(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -986,9 +970,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							Decitoegypt egypt = new Decitoegypt();
 							input2.setText(egypt.convertionNombre(tmp));
 							}
@@ -1004,9 +988,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							input2.setText(DecimalToGrec.main(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1016,9 +1000,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							input2.setText(Decitojapo(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1028,9 +1012,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ //Ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							Maya maya = new Maya();
 							input2.setText(maya.convertNombre(tmp));
 							}
@@ -1046,9 +1030,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							DeciRomain romain = new DeciRomain(tmp);
 							input2.setText(romain.convertDeci());
 							}
@@ -1059,9 +1043,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(GrecToDecimal.verification(input1.getText())){
-							long tmp = GrecToDecimal.main(input1.getText());
+						if(Verifchaine(input1.getText().trim())){
+							if(GrecToDecimal.verification(input1.getText().trim())){
+							long tmp = GrecToDecimal.main(input1.getText().trim());
 							Decimal shadok = new Decimal(tmp);
 							input2.setText(shadok.ConvSha(tmp));
 							}
@@ -1074,9 +1058,9 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){ // Ok
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						long tmp = Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						long tmp = Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							DeciBaby baby = new DeciBaby((int) tmp);
 							input2.setText(baby.convDeciBaby());
@@ -1093,9 +1077,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ // OK
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						long tmp1 = Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						long tmp1 = Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							tmp = Decitobibi(tmp1);
 							input2.setText(tmp);
@@ -1107,9 +1091,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-						long tmp1 = Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+						long tmp1 = Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							input2.setText(String.valueOf(tmp1));
 							}
@@ -1120,10 +1104,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						int tmp1 = (int) Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						int tmp1 = (int) Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							Decitoegypt egypt = new Decitoegypt(); 
 							input2.setText(egypt.convertionNombre(tmp1)); 
@@ -1140,10 +1124,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ //Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						int tmp1 = (int) Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						int tmp1 = (int) Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							input2.setText(DecimalToGrec.main(tmp1)); // on convertit le decimal en grec
 							}
@@ -1154,10 +1138,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // Ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
-							tmp = input1.getText();
+							tmp = input1.getText().trim();
 							input2.setText(tmp);
 							}
 							else input2.setText("mauvaise saisie");
@@ -1167,9 +1151,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // Ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())){						
-						int tmp = (int) Japotodeci(input1.getText()); // on convertit en decimal 
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){						
+						int tmp = (int) Japotodeci(input1.getText().trim()); // on convertit en decimal 
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							Maya maya = new Maya(); // on creer une nouvelle variable de type maya
 							input2.setText(maya.convertNombre(tmp)); // on retourne la valeur en maya
@@ -1186,9 +1170,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())){						
-						int tmp = (int) Japotodeci(input1.getText()); // on convertit en decimal 
-							if(Japotodeci.verif(input1.getText()))
+						if(Verifchaine(input1.getText().trim())){						
+						int tmp = (int) Japotodeci(input1.getText().trim()); // on convertit en decimal 
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							DeciRomain romain = new DeciRomain(tmp); 
 							input2.setText(romain.convertDeci()); // on retourne la valeur en maya
@@ -1201,10 +1185,10 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						int tmp1 = (int) Japotodeci(input1.getText());
-							if(Japotodeci.verif(input1.getText()))
+						long tmp1 = Japotodeci(input1.getText().trim());
+							if(Japotodeci.verif(input1.getText().trim()))
 							{
 							Decimal shadok = new Decimal(tmp1);
 							input2.setText(shadok.ConvSha(tmp1)); // on convertit le decimal en shadok
@@ -1218,7 +1202,7 @@ public class Conversion extends JApplet
 					if (choix2 == "Babylonien"){ // Ok
 						changePoliceBa2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if(maya.validMaya()) {						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						DeciBaby baby = new DeciBaby(tmp); // nouvelle variable de type Babylonien
@@ -1232,7 +1216,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ //Ok
 						changePolice2();	
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(Decitobibi(tmp))); // on convertit le decimal en Bibinaire 
@@ -1242,7 +1226,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // Ok
 						changePolice2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(tmp)); // on renvoie la valeur decimal
@@ -1252,9 +1236,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // Ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						Decitoegypt egypt = new Decitoegypt(); // nouvelle variable de type decitoegypt
@@ -1272,7 +1256,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ //OK
 						changePolice2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(DecimalToGrec.main(tmp))); // on convertit le decimal en grec
@@ -1282,7 +1266,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){//Ok		
 						changePoliceJa2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(Decitojapo(tmp))); // on convertit le decimal en Japonais 
@@ -1292,9 +1276,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // Ok	
 						changePoliceMa2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText());
+						MayaDeci maya = new MayaDeci (input1.getText().trim());
 						if (maya.validMaya()) {
-						tmp = input1.getText();
+						tmp = input1.getText().trim();
 						input2.setText(tmp);
 						}
 						else{
@@ -1305,7 +1289,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // Ok	
 						changePolice2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {					
 						DeciRomain romain = new DeciRomain(maya.convertDeci());// on recupere le valeur en decimal dans une variable de type DeciRomain
 						input2.setText(String.valueOf(romain.convertDeci())); // on convertit le decimal en Romain
@@ -1315,7 +1299,7 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // Ok
 						changePolice2();
 						revalidate();
-						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
+						MayaDeci maya = new MayaDeci (input1.getText().trim()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
 						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						Decimal shadok = new Decimal (tmp);
@@ -1325,12 +1309,12 @@ public class Conversion extends JApplet
 					}
 				}
 				else if (choix == "Romain"){ // ok
-					input1.setText(input1.getText().toUpperCase());
+					input1.setText(input1.getText().toUpperCase().trim());
 					if (choix2 == "Babylonien"){ // ok
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());//
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());//
 							if(romain.validSaisie())
 							{
 							DeciBaby baby = new DeciBaby (romain.convertRomain());// creation d'une variable baby
@@ -1348,8 +1332,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							tmp = (String.valueOf(Decitobibi((long) romain.convertRomain())));
@@ -1362,8 +1346,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {
-							RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {
+							RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							input2.setText(String.valueOf(romain.convertRomain()));	
@@ -1375,9 +1359,9 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ //ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) 
+						if(Verifchaine(input1.getText().trim())) 
 						{
-							RomainDeci romain = new RomainDeci (input1.getText());
+							RomainDeci romain = new RomainDeci (input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							long tmp1 = Long.valueOf(romain.convertRomain());
@@ -1396,8 +1380,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							long tmp = romain.convertRomain();
@@ -1410,8 +1394,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							tmp = (String.valueOf(Decitojapo((long) romain.convertRomain())));
@@ -1424,8 +1408,8 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
 							Maya maya = new Maya ();// creation d'une variable Maya
@@ -1444,12 +1428,12 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // Ok
 						changePolice2();
 						revalidate();
-						RomainDeci romain = new RomainDeci(input1.getText());
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 						if(Verifchaine(input1.getText())) {	
 							
 							if(romain.validSaisie())
 							{
-							tmp = input1.getText();
+							tmp = input1.getText().trim();
 							input2.setText(tmp);
 							}
 							else input2.setText("mauvaise saisie");
@@ -1459,11 +1443,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
-						RomainDeci romain = new RomainDeci(input1.getText());
+						if(Verifchaine(input1.getText().trim())) {						
+						RomainDeci romain = new RomainDeci(input1.getText().trim());
 							if(romain.validSaisie())
 							{
-							long tmp1 = (long) romain.convertRomain();
+							long tmp1 = romain.convertRomain();
 							Decimal shadok = new Decimal(tmp1);// creation d'une variable shadok
 							input2.setText(String.valueOf(shadok.ConvSha(tmp1)));//retourne	
 							}
@@ -1473,15 +1457,15 @@ public class Conversion extends JApplet
 					}	
 				}
 				else if (choix == "Shadok"){
-					input1.setText(input1.getText().toUpperCase());
+					input1.setText(input1.getText().toUpperCase().trim());
 					if (choix2 == "Babylonien"){ // Ok	
 						changePoliceBa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{
-							int tmp = (int) shadok.convDec(input1.getText());
+							long tmp =  shadok.convDec(input1.getText().trim());
 							DeciBaby baby = new DeciBaby(tmp);
 							input2.setText(baby.convDeciBaby());
 							}
@@ -1497,11 +1481,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Bibinaire"){ //ok	
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{
-							long tmp = shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							input2.setText(Decitobibi(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1511,11 +1495,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Decimal"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{
-							long tmp = shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							input2.setText(String.valueOf(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1525,11 +1509,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Egyptien"){ // ok
 						changePoliceEg2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{							
-							int tmp = (int) shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							Decitoegypt egypt = new Decitoegypt();
 							input2.setText(egypt.convertionNombre(tmp));
 							}
@@ -1545,11 +1529,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Grec"){ // Ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{							
-							int tmp = (int) shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							input2.setText(DecimalToGrec.main(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1559,11 +1543,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Japonais"){ // ok
 						changePoliceJa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{							
-							long tmp = shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							input2.setText(Decitojapo(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1573,11 +1557,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Maya"){ // ok
 						changePoliceMa2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{							
-							int tmp = (int) shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							Maya maya = new Maya();
 							input2.setText(maya.convertNombre(tmp));
 							}
@@ -1593,11 +1577,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Romain"){ // ok
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {						
+						if(Verifchaine(input1.getText().trim())) {						
 						Shadok shadok = new Shadok("");// creation d'une variable shadok
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{							
-							int tmp = (int) shadok.convDec(input1.getText());
+							long tmp = shadok.convDec(input1.getText().trim());
 							DeciRomain romain = new DeciRomain(tmp);
 							input2.setText(romain.convertDeci());
 							}
@@ -1608,11 +1592,11 @@ public class Conversion extends JApplet
 					else if (choix2 == "Shadok"){
 						changePolice2();
 						revalidate();
-						if(Verifchaine(input1.getText())) {	
+						if(Verifchaine(input1.getText().trim())) {	
 						Shadok shadok = new Shadok("");
-							if(shadok.VerifShadok(input1.getText()))
+							if(shadok.VerifShadok(input1.getText().trim()))
 							{
-							tmp = input1.getText();
+							tmp = input1.getText().trim();
 							input2.setText(tmp);
 							}
 							else input2.setText("mauvaise saisie");
