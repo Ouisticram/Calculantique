@@ -1,9 +1,9 @@
 package romain;
 
 public class DeciRomain {
-	private int valeur;
+	private long valeur;
 
-	public DeciRomain(int saVal){
+	public DeciRomain(long saVal){
 		this.valeur = saVal;
 	}
 
@@ -11,7 +11,7 @@ public class DeciRomain {
 		return this.valeur!=0;
 	}
 
-	public String convertQuo(String c, int quo){
+	public String convertQuo(String c, long quo){
 		String attribut="";		
 		for (int i=0; i < quo ; i++)
 		{
@@ -22,8 +22,8 @@ public class DeciRomain {
 	
 	// '\u2160'='I', '\u2164'='V', '\u2169'='X', '\u216C'='L', '\u216D'='C', '\u216E'='D, '\u216F'='M'
 	public String convertDeci(){
-		int nombre = this.valeur;
-		int quotient;
+		long nombre = this.valeur;
+		long quotient;
 		String attribut="";
 		
 		if(nombre/1000 != 0) // cas ou le nombre est divisible par 1000

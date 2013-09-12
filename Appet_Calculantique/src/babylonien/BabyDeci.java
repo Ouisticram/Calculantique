@@ -2,7 +2,7 @@ package babylonien;
 
 public class BabyDeci {
 	private String valeur;
-	static int[] tab;
+	static long[] tab;
 	static int nbClou;
 	static int nbChevron;
 	public int nbgroupe=1;
@@ -30,7 +30,7 @@ public class BabyDeci {
 	}
 
 	public void setTab(int taille){
-		this.tab = new int[taille];
+		this.tab = new long[taille];
 	}
 
 	public boolean validBaby() {
@@ -83,11 +83,11 @@ public class BabyDeci {
 		return valide;
 	}
 
-	public int convBaby(){
+	public long convBaby(){
 		this.setTab(this.getGroupe()); // on créer un table qui a pour taille le nombre de groupe
 		this.initTab(); // on initialise ce tableau
 		int i=this.tab.length-1,j=0; // on initialise l'indice a la taille-1 du tableau
-		int somme=0;
+		long somme=0;
 		while ( i >= 0 && j < this.valeur.length()) // on boucle tant que l'indice est supérieur ou égale a 0
 		{
 			if(this.valeur.charAt(j) =='\uD808' && this.valeur.charAt(j+1) == '\uDF0B') { this.tab[i]=this.tab[i]+10;} // si la lettre est < on incrémente de 10
@@ -99,7 +99,7 @@ public class BabyDeci {
 		// on boucle alors sur le tableau
 		for (int x=this.tab.length-1; x>=0 ;x--)
 		{
-			somme=somme+(this.tab[x]*(int)(Math.pow(60,x))); // somme prend la valeur de somme+la valeur dans tab[x]*60 a la puissance x
+			somme=somme+(this.tab[x]*(long)(Math.pow(60,x))); // somme prend la valeur de somme+la valeur dans tab[x]*60 a la puissance x
 		}
 
 		return somme;

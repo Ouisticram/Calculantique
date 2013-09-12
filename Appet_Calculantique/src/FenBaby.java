@@ -7,15 +7,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import babylonien.*;
 import fonts.*;
 
 public class FenBaby extends Container {
 	
 	private JPanel container = new JPanel();
+	private JLabel chiffreTraduit = new JLabel();
 	  //Tableau stockant les éléments à afficher dans la calculatrice
 	String[] tab_string = {"\uD808\uDF0B", "\uD808\uDC79", " ", "R", "=", "C", "+", "-", "*", "/"};
 	  //Un bouton par élément à afficher
@@ -24,20 +27,23 @@ public class FenBaby extends Container {
 	private Dimension dim1 = new Dimension(60, 50);			//On déclare la dimension des touches chiffres
 	private Dimension dim2 = new Dimension(60, 41);			//On déclare la dimension des touches d'opérations
 	private Dimension dim3 = new Dimension(240, 41);
+	private JButton accueil = new JButton("Accueil");
 	//On définit la police d'écriture à utiliser
     private Font police = LoadFonts.create();
 	private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
-	private String chiffre1;							
-	private int chiffre2;
+	private String chiffre1;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
-		
+	public static long reste;
+	private Dimension size;
+	
 	//méthode de notre class
 	public FenBaby(Dimension dim) throws FontFormatException, IOException{
 		super(dim);
+		size = dim;
 		initPanel();
 	}
 
@@ -65,11 +71,16 @@ public class FenBaby extends Container {
     	return baby.validBaby();
     }
 	
+	
+	
 	 private void initComposant() throws FontFormatException, IOException{
-		    ecran = new JTextArea("");
+		    ecran = new JTextArea("",1,1);
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
 		    ecran.setFont(police);
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
+		    JPanel calculatrice = new JPanel();
 		    JPanel operateur = new JPanel();      
 		    operateur.setPreferredSize(new Dimension(100, 350));
 		    JPanel reste = new JPanel();      
@@ -77,6 +88,8 @@ public class FenBaby extends Container {
 		    JPanel chiffre = new JPanel();
 		    chiffre.setPreferredSize(new Dimension(260, 350));
 		    JPanel panEcran = new JPanel();
+		    JPanel header = new JPanel();
+		    JPanel footer = new JPanel();
 
 		    //On parcourt le tableau initialisé
 		    //afin de créer nos boutons
@@ -92,39 +105,47 @@ public class FenBaby extends Container {
 		        	tab_button[i].setPreferredSize(dim3);
 			        chiffre.add(tab_button[i]);
 					tab_button[i].addActionListener(new EspaceListener());
+					tab_button[i].setFont(policeNb);
 				    break;
 		        case 3 :
 		    	  tab_button[i].addActionListener(new ResteListener());
 		    	  tab_button[i].setEnabled(false);
 		    	  chiffre.add(tab_button[i]);
+		    	  tab_button[i].setFont(policeAct);
 		    	  break;
 		        case 4 :
 		          tab_button[i].addActionListener(new EgalListener());
 		          chiffre.add(tab_button[i]);
+		          tab_button[i].setFont(policeAct);
 		          break;
 		        case 5 :
 		          tab_button[i].setForeground(Color.red);
 		          tab_button[i].addActionListener(new ResetListener());
+		          tab_button[i].setFont(policeNb);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 6 :
 		          tab_button[i].addActionListener(new PlusListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 7 :
 		          tab_button[i].addActionListener(new MoinsListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;	
 		        case 8 :	
 		          tab_button[i].addActionListener(new MultiListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 9 :
 		          tab_button[i].addActionListener(new DivListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        default :
@@ -137,17 +158,36 @@ public class FenBaby extends Container {
 		      }
 		    }
 		    
-		    JScrollPane scrollArea = new JScrollPane(ecran);
+		    JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		    panEcran.setLayout(new BorderLayout());
-		    panEcran.add(scrollArea);
-		    // panEcran.setBorder(BorderFactory.createLineBorder(Color.black));
-		    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
-		    container.add(panEcran, BorderLayout.NORTH);	//On place l'écran en haut 
+		    panEcran.add(scrollArea);    
+		    JLabel egalite = new JLabel(" = ");
+		    egalite.setFont(arial);
+		    chiffreTraduit = new JLabel("");
+		    chiffreTraduit.setFont(arial);
+		    chiffreTraduit.setBackground((java.awt.Color) Color(234,225,191));
+		    header.add(egalite);
+		    header.add(chiffreTraduit);
+		    accueil.addActionListener(new PageAccueil());
+		    JLabel fileArianne = new JLabel(" > Babylonien");
+		    fileArianne.setFont(arial);
+		    footer.add(accueil);
+		    footer.add(fileArianne);
+		    calculatrice.setLayout(new BorderLayout());
+		    calculatrice.add(panEcran, BorderLayout.NORTH);
 		    panEcran.setBackground(Color.white);
-		    container.add(chiffre, BorderLayout.CENTER);	//On place les chiffres au centre
+		    calculatrice.add(chiffre, BorderLayout.CENTER);
 		    chiffre.setBackground((java.awt.Color) Color(234,225,191));
-		    container.add(operateur, BorderLayout.EAST);	// et les opérateurs à droite
+		    calculatrice.add(operateur, BorderLayout.EAST);
 		    operateur.setBackground((java.awt.Color) Color(234,225,191));
+		    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
+		    container.add(header, BorderLayout.NORTH);
+		    header.setBackground((java.awt.Color) Color(234,225,191));
+		    container.add(calculatrice, BorderLayout.CENTER);
+		    container.add(footer, BorderLayout.SOUTH);
+		    footer.setBackground((java.awt.Color) Color(234,225,191));		    
 		  }
 
 		  //Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
@@ -167,7 +207,8 @@ public class FenBaby extends Container {
 	          }
 	          else{
 	        	ecran.setFont(police);
-	            ecran.setText(babylonien.convDeciBaby());}
+	            ecran.setText(babylonien.convDeciBaby());
+	            chiffreTraduit.setText(String.valueOf(chiffre2));}
 		    }
 		    if(operateur.equals("-")){
 		    	BabyDeci babylonien1 = new BabyDeci(chiffre1);
@@ -192,7 +233,8 @@ public class FenBaby extends Container {
                 }
                 else{
                 	ecran.setFont(police);
-                	ecran.setText(babylonien.convDeciBaby());}
+                	ecran.setText(babylonien.convDeciBaby());
+                	chiffreTraduit.setText(String.valueOf(chiffre2));}
 		    }          
 		    if(operateur.equals("*")){
 		    	BabyDeci babylonien1 = new BabyDeci(chiffre1);
@@ -209,7 +251,8 @@ public class FenBaby extends Container {
                 }
                 else{
                 	ecran.setFont(police);
-			      ecran.setText(babylonien.convDeciBaby());}
+			      ecran.setText(babylonien.convDeciBaby());
+			      chiffreTraduit.setText(String.valueOf(chiffre2));}
 		    }     
 		    if(operateur.equals("/")){
 		      try{
@@ -228,12 +271,23 @@ public class FenBaby extends Container {
 	              }
 	              else{
 	            	  ecran.setFont(police);
-	            	  ecran.setText(babylonien.convDeciBaby());}
+	            	  ecran.setText(babylonien.convDeciBaby());
+	            	  chiffreTraduit.setText(String.valueOf(chiffre2));}		          		
 		      } catch(ArithmeticException e) {
 		    	  ecran.setFont(policeText);
-		          ecran.setText("Opération impossible");
+		    	  ecran.setText("Opération impossible");
 		      }
 		    }
+		  }
+		  
+		  class PageAccueil implements ActionListener {
+			  public void actionPerformed(ActionEvent e){
+				  panel.removeAll();
+				  panel.setBackground((java.awt.Color) Color(238,232,170));
+				  panel.setLayout(new BorderLayout());
+				  panel.add(new FenAccueil(size).getPanel());
+				  panel.revalidate();
+			  }
 		  }
 
 		//Listener utilisé pour les chiffres
@@ -253,6 +307,17 @@ public class FenBaby extends Container {
 		          str = ecran.getText() + str;
 		      }
 		      ecran.setText(str);
+		      BabyDeci babylonien = new BabyDeci(str);
+		      long chiffre = babylonien.convBaby();
+		      if(!verification(babylonien)){
+			    	chiffreTraduit.setText("Ce n'est pas un nombre babylonien !");
+			  }
+		      else if( chiffre > 777_600_000){
+		    		chiffreTraduit.setText("Vous avez dépassé la limite des nombres babylonien !");
+		      }
+              else{		      
+			      chiffreTraduit.setText(String.valueOf(chiffre));
+              }
 		    }
 		  }
 		  
@@ -416,6 +481,7 @@ public class FenBaby extends Container {
 		      chiffre1 = "";
 		      operateur = "";
 		      ecran.setText("");
+		      chiffreTraduit.setText("");
 		    }
 		  }
 }

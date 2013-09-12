@@ -6,14 +6,14 @@ public class MayaDeci {
 	private int nbPoint;
 	private int nbTrait;
 	public int nbgroupe=1;
-	private int[] tab;
+	private long[] tab;
 
 	public MayaDeci(String nombre) {
 		this.valeur = nombre;
 		this.nbRond=0;
 		this.nbPoint=0;
 		this.nbTrait=0;
-		this.tab = new int[0];
+		this.tab = new long[0];
 	}
 
 	public int getGroup (){
@@ -29,7 +29,7 @@ public class MayaDeci {
 	}
 
 	public void setTab(int taille) {
-		this.tab= new int[taille];
+		this.tab= new long[taille];
 	}
 
 
@@ -84,11 +84,11 @@ public class MayaDeci {
 	}		
 
 
-	public int convertDeci(){
+	public long convertDeci(){
 		this.setTab(this.getGroup()); // on créer un tableau de la taille du nombre de groupe 
 		this.initTab(); // et on initialise ce tableau
 		int i=this.tab.length-1,j=0; // on initialise i a la taille du tableau pour compléter le tableau dans le sens ou insère la valeur des nombres
-		int somme=0;
+		long somme=0;
 		char lettre;
 
 		while ( i >= 0 && j < this.valeur.length()) // tant qu'on ne dépasse pas le tableau et la taille du mot on fait

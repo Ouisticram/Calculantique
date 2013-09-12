@@ -1,7 +1,7 @@
 package babylonien;
 public class Chevron {
 
-	private int valeur;
+	private long valeur;
 	
 	public Chevron(int val){
 		this.valeur=val;		
@@ -12,13 +12,13 @@ public class Chevron {
 		this(10);
 	}
 	
-	public int getValeur() {
+	public long getValeur() {
 		return this.valeur;
 	}
 	
-	public String nbChevron1(int nombre){
+	public String nbChevron1(long nombre){
 		
-		int i = nombre / 10;
+		long i = nombre / 10;
 		String nombre2 = "";
 		
 		while ( i > 0)

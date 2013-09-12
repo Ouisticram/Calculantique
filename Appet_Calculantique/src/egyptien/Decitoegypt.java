@@ -1,13 +1,13 @@
 package egyptien;
 
 public class Decitoegypt{
-	private int nbBaton;
-	private int nbPont;
-	private int nbCorde;
-	private int nbLotus;
-	private int nbIndex;
-	private int nbTetard;
-	private int nbDieu;
+	private long nbBaton;
+	private long nbPont;
+	private long nbCorde;
+	private long nbLotus;
+	private long nbIndex;
+	private long nbTetard;
+	private long nbDieu;
 	
 	public Decitoegypt(int nbB,int nbP,int nbC,int nbL,int nbI,int nbT,int nbD){
 		this.nbBaton = nbB;
@@ -114,10 +114,10 @@ public class Decitoegypt{
 		return chainechar;
 	}
 	
-	public String convertionNombre(int nb){
+	public String convertionNombre(long nb){
 		String chainechar="";
-		int reste=0;
-		int nb1=0, nb10=0, nb100=0, nb1000=0, nb10000=0, nb100000=0, nb1000000=0;
+		long reste=0;
+		long nb1=0, nb10=0, nb100=0, nb1000=0, nb10000=0, nb100000=0, nb1000000=0;
 		
 		if (nb==0){
 			System.out.println("Le zéro n'existe pas en égyptien.");

@@ -448,7 +448,7 @@ public class Conversion extends JApplet
 						{						
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if (tmp.validBaby()) {						
-							int tmp1 = Integer.valueOf(tmp.convBaby());
+							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(Decitobibi(Long.valueOf(tmp1))); // on convertit le decimal en bibinaire
 							}
 							else input2.setText("mauvaise saisie");					
@@ -475,7 +475,7 @@ public class Conversion extends JApplet
 						{
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){							
-							int tmp1 = Integer.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
+							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							Decitoegypt egypt = new Decitoegypt(); // nouvelle variable de type decitoegypt
 							input2.setText(egypt.convertionNombre(tmp1)); // on convertit le decimal en egyptien
 							}						
@@ -495,7 +495,7 @@ public class Conversion extends JApplet
 						{
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){							
-							int tmp1 = Integer.valueOf(tmp.convBaby());
+							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(DecimalToGrec.main(tmp1)); // on convertit le decimal en grec
 							}						
 							else input2.setText("mauvaise saisie");
@@ -509,7 +509,7 @@ public class Conversion extends JApplet
 						{
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){						
-							int tmp1 = Integer.valueOf(tmp.convBaby());
+							long tmp1 = Long.valueOf(tmp.convBaby());
 							input2.setText(Decitojapo(Long.valueOf(tmp1))); // on convertit le decimal en japonnais
 							}						
 							else input2.setText("mauvaise saisie");
@@ -523,7 +523,7 @@ public class Conversion extends JApplet
 						{
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if(tmp.validBaby()){
-							int tmp1 = Integer.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
+							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							Maya maya = new Maya(); // nouvelle variable de type Maya
 							input2.setText(maya.convertNombre(tmp1)); // on convertit le decimal en Maya
 							}						
@@ -543,7 +543,7 @@ public class Conversion extends JApplet
 						{
 						BabyDeci tmp = new BabyDeci (input1.getText()); // on convertit d'abord en decimal
 							if(tmp.validBaby()) {
-							int tmp1 = Integer.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
+							long tmp1 = Long.valueOf(tmp.convBaby()); // on recupere le valeur en decimal
 							DeciRomain maya = new DeciRomain(tmp1); // nouvelle variable de type DeciRomain
 							input2.setText(maya.convertDeci()); // on convertit le decimal en Romain
 							}						
@@ -805,7 +805,7 @@ public class Conversion extends JApplet
 						if(Verifchaine(input1.getText())){
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							DeciBaby baby = new DeciBaby(tmp);
 							input2.setText(baby.convDeciBaby());
 							}				
@@ -825,7 +825,7 @@ public class Conversion extends JApplet
 						{
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							input2.setText(Decitobibi(Long.valueOf(tmp))); // on convertit le decimal en bibinaire
 							}						
 							else input2.setText("mauvaise saisie");
@@ -839,7 +839,7 @@ public class Conversion extends JApplet
 						{
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							input2.setText(String.valueOf(tmp));
 							}						
 							else input2.setText("mauvaise saisie");
@@ -871,7 +871,7 @@ public class Conversion extends JApplet
 						{
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							input2.setText(DecimalToGrec.main(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -885,7 +885,7 @@ public class Conversion extends JApplet
 						{
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							input2.setText(Decitojapo(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -898,7 +898,7 @@ public class Conversion extends JApplet
 						if(Verifchaine(input1.getText())){
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							Maya maya = new Maya ();
 							input2.setText(maya.convertNombre(tmp));
 							}
@@ -917,7 +917,7 @@ public class Conversion extends JApplet
 						if(Verifchaine(input1.getText())){
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							DeciRomain romain = new DeciRomain(tmp);
 							input2.setText(romain.convertDeci());
 							}
@@ -931,7 +931,7 @@ public class Conversion extends JApplet
 						if(Verifchaine(input1.getText())){
 						Egyptodeci egypt = new Egyptodeci(input1.getText());
 							if(egypt.validationEgypt()){
-							int tmp = egypt.convertion();
+							long tmp = egypt.convertion();
 							Decimal shadok = new Decimal(tmp);
 							input2.setText(shadok.ConvSha(tmp));
 							}
@@ -946,7 +946,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							DeciBaby baby = new DeciBaby(tmp);
 							input2.setText(baby.convDeciBaby());
 							}
@@ -964,7 +964,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							input2.setText(Decitobibi(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -976,7 +976,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							input2.setText(String.valueOf(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -988,7 +988,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							Decitoegypt egypt = new Decitoegypt();
 							input2.setText(egypt.convertionNombre(tmp));
 							}
@@ -1006,7 +1006,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							input2.setText(DecimalToGrec.main(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1018,7 +1018,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							input2.setText(Decitojapo(tmp));
 							}
 							else input2.setText("mauvaise saisie");
@@ -1030,7 +1030,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							Maya maya = new Maya();
 							input2.setText(maya.convertNombre(tmp));
 							}
@@ -1048,7 +1048,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							DeciRomain romain = new DeciRomain(tmp);
 							input2.setText(romain.convertDeci());
 							}
@@ -1061,7 +1061,7 @@ public class Conversion extends JApplet
 						revalidate();
 						if(Verifchaine(input1.getText())){
 							if(GrecToDecimal.verification(input1.getText())){
-							int tmp = GrecToDecimal.main(input1.getText());
+							long tmp = GrecToDecimal.main(input1.getText());
 							Decimal shadok = new Decimal(tmp);
 							input2.setText(shadok.ConvSha(tmp));
 							}
@@ -1220,7 +1220,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if(maya.validMaya()) {						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						DeciBaby baby = new DeciBaby(tmp); // nouvelle variable de type Babylonien
 						input2.setText(baby.convDeciBaby()); // on convertit le decimal en Babylonien 
 						}
@@ -1234,7 +1234,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(Decitobibi(tmp))); // on convertit le decimal en Bibinaire 
 						}
 						else input2.setText("mauvaise saisie");				
@@ -1244,7 +1244,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(tmp)); // on renvoie la valeur decimal
 						} 
 						else input2.setText("mauvaise saisie");
@@ -1256,7 +1256,7 @@ public class Conversion extends JApplet
 						{
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						Decitoegypt egypt = new Decitoegypt(); // nouvelle variable de type decitoegypt
 						input2.setText(egypt.convertionNombre(tmp)); // on convertit le decimal en egyptien
 						}		
@@ -1274,7 +1274,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(DecimalToGrec.main(tmp))); // on convertit le decimal en grec
 						}
 						else input2.setText("mauvaise saisie");					
@@ -1284,7 +1284,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()){						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						input2.setText(String.valueOf(Decitojapo(tmp))); // on convertit le decimal en Japonais 
 						}
 						else input2.setText("mauvaise saisie");					
@@ -1317,7 +1317,7 @@ public class Conversion extends JApplet
 						revalidate();
 						MayaDeci maya = new MayaDeci (input1.getText()); // creation d'une variable MayaDeci
 						if (maya.validMaya()) {						
-						int tmp = Integer.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
+						long tmp = Long.valueOf(maya.convertDeci()); // on recupere le valeur en decimal
 						Decimal shadok = new Decimal (tmp);
 						input2.setText(shadok.ConvSha(tmp)); // on convertit le decimal en shadok
 						}
@@ -1380,7 +1380,7 @@ public class Conversion extends JApplet
 							RomainDeci romain = new RomainDeci (input1.getText());
 							if(romain.validSaisie())
 							{
-							int tmp1 = Integer.valueOf(romain.convertRomain());
+							long tmp1 = Long.valueOf(romain.convertRomain());
 							Decitoegypt egypt = new Decitoegypt();
 							input2.setText(egypt.convertionNombre(tmp1));
 							}
@@ -1400,7 +1400,7 @@ public class Conversion extends JApplet
 						RomainDeci romain = new RomainDeci(input1.getText());
 							if(romain.validSaisie())
 							{
-							int tmp = romain.convertRomain();
+							long tmp = romain.convertRomain();
 							input2.setText(String.valueOf(DecimalToGrec.main(tmp)));//retourne
 							}
 							else input2.setText("mauvaise saisie");

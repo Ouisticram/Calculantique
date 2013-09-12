@@ -6,15 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import shadok.*;
+import shadok.Decimal;
+import shadok.Shadok;
 import t2s.son.LecteurTexte;
 
 public class FenShad extends Container {
 	
 	private JPanel container = new JPanel();
+	private JLabel chiffreTraduit = new JLabel();
 	  //Tableau stockant les éléments à afficher dans la calculatrice
 	String[] tab_string = {"GA", "BU", "ZO", "MEU", "R", "=", "C", "+", "-", "*", "/"};
 	  //Un bouton par élément à afficher
@@ -24,6 +27,7 @@ public class FenShad extends Container {
 	private Dimension dim1 = new Dimension(60, 50);			//On déclare la dimension des touches chiffres
 	private Dimension dim2 = new Dimension(60, 41);			//On déclare la dimension des touches d'opérations
 	private Dimension dim3 = new Dimension(46, 44);			//On déclare la dimension de la touche play
+	private JButton accueil = new JButton("Accueil");
 	//déclaration de variables
 	private String chiffre1;							
 	private long chiffre2;
@@ -33,10 +37,12 @@ public class FenShad extends Container {
 	public static long reste;
 	private String tmp = "";
 	private LecteurTexte lt;
+	private Dimension size;
 		
 	//méthode de notre class
 	public FenShad(Dimension dim){
 		super(dim);
+		size = dim;
 		initPanel();
 	}
 
@@ -56,10 +62,13 @@ public class FenShad extends Container {
 		    //On définit la police d'écriture à utiliser
 		    Font police = new Font("Arial", Font.BOLD, 20);
 		    Font policeT = new Font("Arial", Font.BOLD, 12);
-		    ecran = new JTextArea("");
+		    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+		    Font policeAct = new Font("Arial", Font.PLAIN, 18);
+		    ecran = new JTextArea("",1,1);
 		    ecran.setRows(2);
 		    ecran.setEditable(false);
 		    ecran.setFont(police);
+		    JPanel calculatrice = new JPanel();
 		    JPanel operateur = new JPanel();      
 		    operateur.setPreferredSize(new Dimension(100, 350));
 		    JPanel reste = new JPanel();      
@@ -67,7 +76,8 @@ public class FenShad extends Container {
 		    JPanel chiffre = new JPanel();
 		    chiffre.setPreferredSize(new Dimension(260, 350));
 		    JPanel panEcran = new JPanel();
-		    
+		    JPanel header = new JPanel();
+		    JPanel footer = new JPanel();		    
 
 		    //On parcourt le tableau initialisé
 		    //afin de créer nos boutons
@@ -81,35 +91,42 @@ public class FenShad extends Container {
 		        case 4 :
 		    	  tab_button[i].addActionListener(new ResteListener());
 		    	  tab_button[i].setEnabled(false);
+		    	  tab_button[i].setFont(policeAct);
 		    	  chiffre.add(tab_button[i]);
 		    	  break;
 		        case 5 :
 		          tab_button[i].addActionListener(new EgalListener());
+		          tab_button[i].setFont(policeAct);
 		          chiffre.add(tab_button[i]);
 		          break;
 		        case 6 :
 		          tab_button[i].setForeground(Color.red);
 		          tab_button[i].addActionListener(new ResetListener());
+		          tab_button[i].setFont(policeNb);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 7 :
 		          tab_button[i].addActionListener(new PlusListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 8 :
 		          tab_button[i].addActionListener(new MoinsListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;	
 		        case 9 :	
 		          tab_button[i].addActionListener(new MultiListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        case 10 :
 		          tab_button[i].addActionListener(new DivListener());
 		          tab_button[i].setPreferredSize(dim2);
+		          tab_button[i].setFont(policeAct);
 		          operateur.add(tab_button[i]);
 		          break;
 		        default :
@@ -128,17 +145,36 @@ public class FenShad extends Container {
 		    lecteur.setPreferredSize(dim3);
 		    lecteur.setEnabled(false);	    
 	        operateur.add(lecteur);
-	        JScrollPane scrollArea = new JScrollPane(ecran);
+	        JScrollPane scrollArea = new JScrollPane(ecran,
+                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	        panEcran.setLayout(new BorderLayout());
 		    panEcran.add(scrollArea);
-		   //panEcran.setBorder(BorderFactory.createLineBorder(Color.black));
-		    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
-		    container.add(panEcran, BorderLayout.NORTH);	//On place l'écran en haut 
+		    JLabel egalite = new JLabel(" = ");
+		    egalite.setFont(arial);
+		    chiffreTraduit = new JLabel("");
+		    chiffreTraduit.setFont(arial);
+		    chiffreTraduit.setBackground((java.awt.Color) Color(234,225,191));
+		    header.add(egalite);
+		    header.add(chiffreTraduit);
+		    accueil.addActionListener(new PageAccueil());
+		    JLabel fileArianne = new JLabel(" > Shadok");
+		    fileArianne.setFont(arial);
+		    footer.add(accueil);
+		    footer.add(fileArianne);
+		    calculatrice.setLayout(new BorderLayout());
+		    calculatrice.add(panEcran, BorderLayout.NORTH);
 		    panEcran.setBackground(Color.white);
-		    container.add(chiffre, BorderLayout.CENTER);	//On place les chiffres au centre
+		    calculatrice.add(chiffre, BorderLayout.CENTER);
 		    chiffre.setBackground((java.awt.Color) Color(234,225,191));
-		    container.add(operateur, BorderLayout.EAST);	// et les opérateurs à droite
+		    calculatrice.add(operateur, BorderLayout.EAST);
 		    operateur.setBackground((java.awt.Color) Color(234,225,191));
+		    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
+		    container.add(header, BorderLayout.NORTH);
+		    header.setBackground((java.awt.Color) Color(234,225,191));
+		    container.add(calculatrice, BorderLayout.CENTER);
+		    container.add(footer, BorderLayout.SOUTH);
+		    footer.setBackground((java.awt.Color) Color(234,225,191));
 		  }
 
 		  //Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
@@ -149,6 +185,7 @@ public class FenShad extends Container {
 		      chiffre2 = mot1.convDec(chiffre1) + mot2.convDec(ecran.getText());
 		      Decimal nombre = new Decimal(0);
 		      ecran.setText(nombre.ConvSha(chiffre2));
+		      chiffreTraduit.setText(String.valueOf(chiffre2));
 		      tmp = nombre.ConvSha(chiffre2);
 		    }
 		    if(operateur.equals("-")){
@@ -162,6 +199,7 @@ public class FenShad extends Container {
 		      }
 		      else{
 			      ecran.setText(nombre.ConvSha(chiffre2));
+			      chiffreTraduit.setText(String.valueOf(chiffre2));
 			      tmp = nombre.ConvSha(chiffre2);}
 		    }          
 		    if(operateur.equals("*")){
@@ -170,6 +208,7 @@ public class FenShad extends Container {
 			    chiffre2 = mot1.convDec(chiffre1) * mot2.convDec(ecran.getText());
 			    Decimal nombre = new Decimal(0);
 			    ecran.setText(nombre.ConvSha(chiffre2));
+			    chiffreTraduit.setText(String.valueOf(chiffre2));
 			    tmp = nombre.ConvSha(chiffre2);
 		    }     
 		    if(operateur.equals("/")){
@@ -180,12 +219,23 @@ public class FenShad extends Container {
 			    reste = mot1.convDec(chiffre1) % mot2.convDec(ecran.getText());
 			    Decimal nombre = new Decimal(0);
 			    ecran.setText(nombre.ConvSha(chiffre2));
+			    chiffreTraduit.setText(String.valueOf(chiffre2));
 			    tmp = nombre.ConvSha(chiffre2);
 		      } catch(ArithmeticException e) {
 		        ecran.setText("Opération impossible");
 		        tmp = "opération impossible";
 		      }
 		    }
+		  }
+		  
+		  class PageAccueil implements ActionListener {
+			  public void actionPerformed(ActionEvent e){
+				  panel.removeAll();
+				  panel.setBackground((java.awt.Color) Color(238,232,170));
+				  panel.setLayout(new BorderLayout());
+				  panel.add(new FenAccueil(size).getPanel());
+				  panel.revalidate();
+			  }
 		  }
 
 		//Listener utilisé pour les chiffres
@@ -203,6 +253,9 @@ public class FenShad extends Container {
 		      }
 		      ecran.setText(str);
 		      tmp = str;
+		      Shadok mot = new Shadok("");
+		      long chiffre = mot.convDec(str);	      
+			  chiffreTraduit.setText(String.valueOf(chiffre));
 		    }
 		  }
 		  
@@ -324,6 +377,7 @@ public class FenShad extends Container {
 		      chiffre1 = "";
 		      operateur = "";
 		      ecran.setText("");
+		      chiffreTraduit.setText("");
 		    }
 		  }
 }

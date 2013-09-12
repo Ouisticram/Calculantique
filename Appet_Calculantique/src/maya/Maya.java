@@ -1,9 +1,9 @@
 package maya;
 
 public class Maya {
-	private int nbRond;
-	private int nbPoint;
-	private int nbTrait;
+	private long nbRond;
+	private long nbPoint;
+	private long nbTrait;
 
 	public Maya(int nbR,int nbP,int nbT){
 		this.nbRond = nbR;
@@ -54,10 +54,10 @@ public class Maya {
 		return attribut;
 	}
 	
-	public String convertNombre(int nb){
+	public String convertNombre(long nb){
 		String attribut="";
-		int quotient,n=5;
-		int nb1=0, nb5=0;
+		long quotient,n=5;
+		long nb1=0, nb5=0;
 
 		while (n>=0) // on boucle sur les puissances de 20 jusqu'Ã  20â�°
 		{

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ import grec.*;
 public class FenGrec extends Container{
 	
 	private JPanel container = new JPanel();
+	private JLabel chiffreTraduit = new JLabel();
 	//Tableau stockant les éléments à afficher dans la calculatrice
 	String[] tab_string = {"\u03B1", "\u03B2", "\u03B3", "\u03B4", "\u03B5", "\u03DD", "\u03B6", "\u03B7", "\u03B8", "\u03B9", "\u03BA", "\u03BB", "\u03BC", "\u03BD", "\u03BE", "\u03BF", "\u03C0", "\u03DF", "\u03C1", "\u03C3", "\u03C4", "\u03C5", "\u03C6", "\u03C7", "\u03C8", "\u03C9", "\u03E1", "\u02B9", "R", "=", "C", "+", "-", "*", "/"};
 	//Un bouton par élément à afficher
@@ -21,17 +23,20 @@ public class FenGrec extends Container{
 	private JTextArea ecran = new JTextArea();				//création du JTextArea (notre écran)	
 	private Dimension dim1 = new Dimension(65, 50);			//On déclare la dimension des touches chiffres
 	private Dimension dim2 = new Dimension(65, 41);			//On déclare la dimension des touches d'opérations
+	private JButton accueil = new JButton("Accueil");
 	//déclaration de variables
 	private String chiffre1;							
-	private int chiffre2;
+	private long chiffre2;
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
-	public static int reste;
+	public static long reste;
+	private Dimension size;
 	
 	//méthode de notre class
 	public FenGrec(Dimension dim){
 		super(dim);
+		size = dim;
 		initPanel();
 	}
 		
@@ -130,10 +135,13 @@ public class FenGrec extends Container{
   	private void initComposant(){
 	    //On définit la police d'écriture à utiliser
 	    Font police = new Font("Arial", Font.BOLD, 20);
-	    ecran = new JTextArea("");
+	    Font policeNb = new Font("Arial", Font.PLAIN, 16);
+	    Font policeAct = new Font("Arial", Font.PLAIN, 18);
+	    ecran = new JTextArea("",1,1);
 	    ecran.setRows(2);
 	    ecran.setEditable(false);
 	    ecran.setFont(police);
+	    JPanel calculatrice = new JPanel();
 	    JPanel operateur = new JPanel();      
 	    operateur.setPreferredSize(new Dimension(100, 350));
 	    JPanel reste = new JPanel();      
@@ -141,7 +149,8 @@ public class FenGrec extends Container{
 	    JPanel chiffre = new JPanel();
 	    chiffre.setPreferredSize(new Dimension(450, 400));
 	    JPanel panEcran = new JPanel();
-	    
+	    JPanel header = new JPanel();
+	    JPanel footer = new JPanel();
 
 	    //On parcourt le tableau initialisé
 	    //afin de créer nos boutons
@@ -155,35 +164,42 @@ public class FenGrec extends Container{
 	        case 28 :
 	    	  tab_button[i].addActionListener(new ResteListener());
 	    	  tab_button[i].setEnabled(false);
+	    	  tab_button[i].setFont(policeAct);
 	    	  chiffre.add(tab_button[i]);
 	    	  break;
 	        case 29 :
 	          tab_button[i].addActionListener(new EgalListener());
+	          tab_button[i].setFont(policeAct);
 	          chiffre.add(tab_button[i]);
 	          break;
 	        case 30 :
 	          tab_button[i].setForeground(Color.red);
 	          tab_button[i].addActionListener(new ResetListener());
+	          tab_button[i].setFont(policeNb);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 31 :
 	          tab_button[i].addActionListener(new PlusListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 32 :
 	          tab_button[i].addActionListener(new MoinsListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;	
 	        case 33 :	
 	          tab_button[i].addActionListener(new MultiListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        case 34 :
 	          tab_button[i].addActionListener(new DivListener());
 	          tab_button[i].setPreferredSize(dim2);
+	          tab_button[i].setFont(policeAct);
 	          operateur.add(tab_button[i]);
 	          break;
 	        default :
@@ -194,17 +210,36 @@ public class FenGrec extends Container{
 	          break;
 	      }
 	    }
-	    JScrollPane scrollArea = new JScrollPane(ecran);
+	    JScrollPane scrollArea = new JScrollPane(ecran,
+                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	    panEcran.setLayout(new BorderLayout());
 	    panEcran.add(scrollArea);
-	    // panEcran.setBorder(BorderFactory.createLineBorder(Color.black));
-	    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
-	    container.add(panEcran, BorderLayout.NORTH);	//On place l'écran en haut 
+	    JLabel egalite = new JLabel(" = ");
+	    egalite.setFont(arial);
+	    chiffreTraduit = new JLabel("");
+	    chiffreTraduit.setFont(arial);
+	    chiffreTraduit.setBackground((java.awt.Color) Color(234,225,191));
+	    header.add(egalite);
+	    header.add(chiffreTraduit);
+	    accueil.addActionListener(new PageAccueil());
+	    JLabel fileArianne = new JLabel(" > Grec");
+	    fileArianne.setFont(arial);
+	    footer.add(accueil);
+	    footer.add(fileArianne);
+	    calculatrice.setLayout(new BorderLayout());
+	    calculatrice.add(panEcran, BorderLayout.NORTH);
 	    panEcran.setBackground(Color.white);
-	    container.add(chiffre, BorderLayout.CENTER);	//On place les chiffres au centre
+	    calculatrice.add(chiffre, BorderLayout.CENTER);
 	    chiffre.setBackground((java.awt.Color) Color(234,225,191));
-	    container.add(operateur, BorderLayout.EAST);	// et les opérateurs à droite
+	    calculatrice.add(operateur, BorderLayout.EAST);
 	    operateur.setBackground((java.awt.Color) Color(234,225,191));
+	    container.setLayout(new BorderLayout());		//déclaration de l'utilisation du BorderLayout (ATTENTION ! sans ça les BorderLayout ne fonctionnent pas !)
+	    container.add(header, BorderLayout.NORTH);
+	    header.setBackground((java.awt.Color) Color(234,225,191));
+	    container.add(calculatrice, BorderLayout.CENTER);
+	    container.add(footer, BorderLayout.SOUTH);
+	    footer.setBackground((java.awt.Color) Color(234,225,191));
 	  }
 
 	//Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
@@ -220,6 +255,7 @@ public class FenGrec extends Container{
 	      }
 	      else{
 	    	  ecran.setText(Detogr.convert(chiffre2));
+	    	  chiffreTraduit.setText(String.valueOf(chiffre2));
 	      }     
 	      
 	    }
@@ -240,6 +276,7 @@ public class FenGrec extends Container{
 	        }
 	        else{
 	        	ecran.setText(Detogr.convert(chiffre2));
+	        	chiffreTraduit.setText(String.valueOf(chiffre2));
 	        }
 	    }          
 	    if(operateur.equals("*")){
@@ -253,6 +290,7 @@ public class FenGrec extends Container{
 	      }
 	      else{
 	    	  ecran.setText(Detogr.convert(chiffre2));
+	    	  chiffreTraduit.setText(String.valueOf(chiffre2));
 	      }
 	    }     
 	    if(operateur.equals("/")){
@@ -271,7 +309,8 @@ public class FenGrec extends Container{
 	        	ecran.setText("Le chiffre \"0\" n'existe pas en grec !");
 	        }
 	        else{
-	        ecran.setText(Detogr.convert(chiffre2));}
+	        ecran.setText(Detogr.convert(chiffre2));
+	        chiffreTraduit.setText(String.valueOf(chiffre2));}
 	      } catch(ArithmeticException e) {
 	    	ecran.setText("Opération impossible");
 	      }
@@ -280,17 +319,27 @@ public class FenGrec extends Container{
 
 	//méthode qui fait appel à notre class de conversion
 	static class Detogr extends DecimalToGrec{
-		static String convert(int chiffre){
+		static String convert(long chiffre){
 			return DecimalToGrec.main(chiffre);
 		}
 	}
 
 	//méthode qui fait appel à notre class de conversion
 	static class Grtode extends GrecToDecimal{
-		static int convert(String gr){
+		static long convert(String gr){
 			return GrecToDecimal.main(gr);
 		}
 	}
+	
+	class PageAccueil implements ActionListener {
+		  public void actionPerformed(ActionEvent e){
+			  panel.removeAll();
+			  panel.setBackground((java.awt.Color) Color(238,232,170));
+			  panel.setLayout(new BorderLayout());
+			  panel.add(new FenAccueil(size).getPanel());
+			  panel.revalidate();
+		  }
+	  }
 
 	//Listener utilisé pour les chiffres
 	  //Permet de stocker les chiffres et de les afficher
@@ -307,6 +356,16 @@ public class FenGrec extends Container{
 	          
 	      }
 	      ecran.setText(str);
+	      long chiffre = Grtode.convert(str);
+	      if(!verificationGrec(str)){
+	    	  chiffreTraduit.setText("Ce n'est pas un nombre grec !");
+	      }
+    	  else if(chiffre > 9999){
+    		  chiffreTraduit.setText("Vous avez dépassé la limite des nombres grec !");
+	      }
+    	  else{		      
+    		  chiffreTraduit.setText(String.valueOf(chiffre));
+          }
 	    }
 	  }
 	  
@@ -432,6 +491,7 @@ public class FenGrec extends Container{
 	      chiffre1 = "";
 	      operateur = "";
 	      ecran.setText("");
+	      chiffreTraduit.setText("");
 	    }
 	  }
 }
