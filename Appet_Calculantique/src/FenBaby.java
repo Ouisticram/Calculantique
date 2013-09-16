@@ -33,7 +33,11 @@ public class FenBaby extends Container {
 	private Font policeText = new Font("Arial", Font.BOLD, 20);
 	//déclaration de variables
 	private String chiffre1;
+<<<<<<< HEAD
 	private long chiffre2;
+=======
+	private int chiffre2;
+>>>>>>> 30a1fa81eed1952e2acf7c7f7d8de35acebd857c
 	private boolean clicOperateur = false, update = false;
 	private boolean enable = false;
 	private String operateur = "";
